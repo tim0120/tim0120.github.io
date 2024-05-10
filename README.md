@@ -1,6 +1,6 @@
 Hi, I'm Tim. Welcome to my site.
 
-### Research
+### Projects/Research
 - [The Effect of Activation Functions On Superposition in Toy Models](https://deep-learning-mit.github.io/staging/blog/2023/superposition/)
 
 ### Info
