@@ -2,7 +2,7 @@ Hi, I'm Tim.
 
 I'm a researcher interested in understanding how machine learning models learn and process information.
 
-Currently, I'm working on language model interpretability in the Algorithmic Alignment Group; check out [my Master's thesis](https://tim0120.github.io/files/mengthesis.pdf) on some of the work! I'm also working on a mechanistic interpretability project with Jake Mendel and [SPAR](https://sparai.org/).
+Currently, I'm working on language model interpretability in the Algorithmic Alignment Group; check out [my Master's thesis](https://dspace.mit.edu/handle/1721.1/156804) on some of the work! I'm also working on a mechanistic interpretability project [SPAR](https://sparai.org/).
 
 ### Projects/Research
 A mix of the projects and research that I've done. Feel free to reach out to chat about any of it!
