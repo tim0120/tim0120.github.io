@@ -11,10 +11,10 @@ export default function Home() {
       <div className="flex justify-between mb-2 space-x-10">
         <div>
           <h1 className="text-2xl mb-4">
-            Hi, I'm Tim.
+            Hi, I&rsquo;m Tim.
           </h1>
           <p className="text-md">
-            I'm a researcher and engineer trying to figure out how machines learn. I am also interested in solving problems arising from the creation and adoption of artificially intelligent systems.<br /><br />
+            I am a researcher and engineer trying to figure out how machines learn. I am also interested in solving problems arising from the creation and adoption of artificially intelligent systems.<br /><br />
             Currently, I am working on interpretability, red-teaming, and steering of language models with the <Link href="https://algorithmicalignment.csail.mit.edu/" className="text-blue-500 hover:underline">Algorithmic Alignment Group</Link>. You can find works of mine below or in my <Link href="/projects" className="text-blue-500 hover:underline">projects</Link>.
           </p>
         </div>

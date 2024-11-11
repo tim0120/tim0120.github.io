@@ -5,7 +5,7 @@ export default function Blog() {
 	<div className="">
 	  <PageNav />
 	  <div className="flex justify-between">
-		<div className="text-xl">Tim's blog is currently under construction 👷‍♂️🚧</div>
+		<div className="text-xl"> The blog is currently under construction 👷‍♂️🚧</div>
 	  </div>
 	</div>
   );
