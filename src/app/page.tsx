@@ -19,7 +19,7 @@ export default function Home() {
           </p>
         </div>
         <div className="text-center">
-          <Image src="/images/face.png" alt="My face" width={600} height={400} className="mx-auto" />
+          <Image src="/images/face.png" alt="My face" width={300} height={300} className="mx-auto" />
           <h1 className="text-xl mt-2">Timothy H. Kostolansky</h1>
           <div className="flex justify-center space-x-4 mt-4">
             {[

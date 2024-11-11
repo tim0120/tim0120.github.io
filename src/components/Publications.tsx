@@ -30,7 +30,7 @@ const publications = [
 const Publication = ({ title, authors, link, publisher }: { title: string; authors: string; link: string; publisher: string; }) => {
   return (
     <>
-      <Link href={link} className="text-lg text-blue-500 hover:underline">{title}</Link><br />
+      <Link href={link} className="text-md text-blue-500 hover:underline">{title}</Link><br />
       <p className="text-md">{authors}</p>
       {publisher && <p className="text-md">{publisher}</p>}
     </>
