@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Light theme (default) */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  
+  /* Add any other theme colors you need */
+  --primary: #3b82f6;
+  --secondary: #6b7280;
+  --accent: #f59e0b;
+}
+
+/* Dark theme */
+:root[class~="dark"] {
+  --background: #292929;
+  --foreground: #ededed;
+  
+  /* Dark theme variants */
+  --primary: #60a5fa;
+  --secondary: #9ca3af;
+  --accent: #fbbf24;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 200ms, color 200ms;
+}
