@@ -1,6 +1,5 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { ProjectType } from '@/lib/projects'
 import PageTitle from './EmojiTitle'
 import InteractiveEmojiArray from './InteractiveEmojiArray'
 import LoadingAnimation from './LoadingAnimation'
@@ -62,7 +61,7 @@ function SearchStatusDisplay({
 
   return (<div className="mt-5">{content}</div>);
 }
-export default function EmojiSearch(props: ProjectType) {
+export default function EmojiSearch() {
   const [query, setQuery] = useState('');
   const [searchState, setSearchState] = useState<'init' | 'search' | 'success' | 'failure'>('init');
   const [results, setResults] = useState<string[]>([]);

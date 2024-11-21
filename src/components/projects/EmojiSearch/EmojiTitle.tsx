@@ -6,7 +6,7 @@ const title = 'Emoji\nSearch'
 
 export default function PageTitle() {
   const [emojis] = useState(() => 
-    Array.from({ length: numEmojis }).map(() => <RandomInteractiveEmoji />)
+    Array.from({ length: numEmojis }).map((_, index) => <RandomInteractiveEmoji key={index} />)
   );
 
   return (

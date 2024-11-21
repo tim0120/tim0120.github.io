@@ -1,30 +1,30 @@
 import { RandomInteractiveEmoji } from "./InteractiveEmoji";
 
-function SingleSpinner() {
-  return (
-    <>
-    <div style={{
-      animation: `
-        ellipse 4s linear infinite,
-        scale 4s ease infinite
-      `
-    }}>
-     <RandomInteractiveEmoji />
-    </div>
+// function SingleSpinner() {
+//   return (
+//     <>
+//     <div style={{
+//       animation: `
+//         ellipse 4s linear infinite,
+//         scale 4s ease infinite
+//       `
+//     }}>
+//      <RandomInteractiveEmoji />
+//     </div>
     
-    <style>{`
-      @keyframes ellipse {
-        from { transform: translate(-50%, -50%) rotate(0deg) translate(0px, 0px) }
-        to { transform: translate(-50%, -50%) rotate(360deg) translate(0px, 0px) }
-      }
-      @keyframes scale {
-        0%, 100% { scale: 1 }
-        50% { scale: 0.5 }
-      }
-    `}</style>
-    </>
-  );
-}
+//     <style>{`
+//       @keyframes ellipse {
+//         from { transform: translate(-50%, -50%) rotate(0deg) translate(0px, 0px) }
+//         to { transform: translate(-50%, -50%) rotate(360deg) translate(0px, 0px) }
+//       }
+//       @keyframes scale {
+//         0%, 100% { scale: 1 }
+//         50% { scale: 0.5 }
+//       }
+//     `}</style>
+//     </>
+//   );
+// }
 
 import { useEffect, useState } from 'react';
 
@@ -60,7 +60,7 @@ const numEmojis = 6;
 export default function LoadingAnimation() {
   const [time, setTime] = useState(0);
   const [emojiComponents] = useState(() => 
-    Array.from({ length: numEmojis }).map(() => <RandomInteractiveEmoji />)
+    Array.from({ length: numEmojis }).map((_, index) => <RandomInteractiveEmoji key={index}/>)
   );
 
   useEffect(() => {
