@@ -9,9 +9,9 @@ const PROJECT_COMPONENTS = {
 }
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 // Generate metadata for each project
@@ -38,7 +38,7 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <div className="min-h-screen">
-      <ProjectComponent {...project} />
+      return <ProjectComponent slug={project.slug} title={project.title} description={project.description} />
     </div>
   )
 }

@@ -61,10 +61,13 @@ function SearchStatusDisplay({
 
   return (<div className="mt-5">{content}</div>);
 }
+
 export default function EmojiSearch({
+  slug,
   title,
   description
 }:{
+  slug: string
   title: string
   description: string
 }) {
@@ -127,7 +130,8 @@ export default function EmojiSearch({
       <PageTitle />
       <h1 className="sr-only">{title}</h1>
       <p className="sr-only">{description}</p>
-      <SearchForm
+      <span className="sr-only">{slug}</span>
+     <SearchForm
         query={query}
         setQuery={setQuery}
         onSubmit={handleSubmit}
