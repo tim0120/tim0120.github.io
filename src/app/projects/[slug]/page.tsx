@@ -38,7 +38,7 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <div className="min-h-screen">
-      return <ProjectComponent slug={project.slug} title={project.title} description={project.description} />
+      <ProjectComponent slug={project.slug} title={project.title} description={project.description} />
     </div>
   )
 }
