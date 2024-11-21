@@ -8,7 +8,8 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="transition-colors"
+      // className="text-xl hover:scale-125 transition-transform duration-100 ease-in-out"
+      className="text-xl"
       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
     >
       {theme === 'light' ? '🌚' : '🌞'}
