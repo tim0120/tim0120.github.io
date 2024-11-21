@@ -1,13 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import PageNav from "@/components/PageNav";
 import ThemeAwareSvg from "@/components/ThemeAwareSvg";
 import Publications from "@/components/Publications";
 
 export default function Home() {
   return (
     <div className="">
-      <PageNav />
       <div className="flex justify-between mb-2 space-x-10">
         <div>
           <h1 className="text-2xl mb-4">
@@ -19,7 +17,13 @@ export default function Home() {
           </p>
         </div>
         <div className="text-center">
-          <Image src="/images/face.png" alt="My face" width={300} height={300} className="mx-auto" />
+          <Image 
+            src="/images/face.png" 
+            alt="My face" 
+            width={300} 
+            height={300} 
+            className="mx-auto sm:w-48 sm:h-auto" 
+          />
           <h1 className="text-xl mt-2">Timothy H. Kostolansky</h1>
           <div className="flex justify-center space-x-4 mt-4">
             {[
