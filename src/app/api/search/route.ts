@@ -2,8 +2,6 @@ import { NextResponse } from 'next/server'
 
 const EMOJI_API = process.env.EMOJI_SEARCH_API
 
-export const dynamic = "force-dynamic"
-
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const query = searchParams.get('query')
