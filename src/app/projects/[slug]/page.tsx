@@ -6,7 +6,6 @@ import { getProjectData, getAllProjectSlugs } from '@/lib/projects'
 // Dynamically import project components
 const PROJECT_COMPONENTS = {
   'emoji-search': dynamic(() => import('@/components/projects/EmojiSearch')),
-  // 'data-viz': dynamic(() => import('@/components/projects/DataVizProject')),
 }
 
 type Props = {

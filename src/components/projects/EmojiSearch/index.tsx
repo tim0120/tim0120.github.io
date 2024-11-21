@@ -61,7 +61,13 @@ function SearchStatusDisplay({
 
   return (<div className="mt-5">{content}</div>);
 }
-export default function EmojiSearch() {
+export default function EmojiSearch({
+  title,
+  description
+}:{
+  title: string
+  description: string
+}) {
   const [query, setQuery] = useState('');
   const [searchState, setSearchState] = useState<'init' | 'search' | 'success' | 'failure'>('init');
   const [results, setResults] = useState<string[]>([]);
@@ -119,6 +125,8 @@ export default function EmojiSearch() {
   return (
     <div className="p-8 flex flex-col items-center">
       <PageTitle />
+      <h1 className="sr-only">{title}</h1>
+      <p className="sr-only">{description}</p>
       <SearchForm
         query={query}
         setQuery={setQuery}
