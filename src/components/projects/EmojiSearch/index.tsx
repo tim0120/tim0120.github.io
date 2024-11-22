@@ -1,127 +1,82 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import PageTitle from './EmojiTitle'
 import InteractiveEmojiArray from './InteractiveEmojiArray'
 import LoadingAnimation from './LoadingAnimation'
 
-const SearchForm = ({ 
-  query, 
-  setQuery, 
-  onSubmit,
-  searchState,
-}: { 
-  query: string
-  setQuery: (query: string) => void
-  onSubmit: (e: React.FormEvent) => Promise<void>
-  searchState: 'init' | 'search' | 'success' | 'failure'
-}) => (
-  <form onSubmit={onSubmit} className="flex flex-col items-center">
-    <div className={`w-full flex justify-center ${searchState === 'search' ? 'cursor-wait' : ''}`}>
-      <input
-        name="query"
-        value={query}
-        placeholder={query === '' ? 'Type to search...' : ''}
-        onChange={e => setQuery(e.target.value)}
-        className="px-4 py-2 border rounded-lg mr-2 bg-inherit"
-        disabled={searchState === 'search'}
-        // TOFIX: autoFocus does not work with 'success'
-        autoFocus={['success', 'failure', 'init'].includes(searchState)}
-      />
-      <button 
-        type="submit"
-        className={`px-2 bg-transparent hover:scale-125 transform transition-transform duration-150 text-2xl ${searchState === 'search' ? 'cursor-wait' : ''}`}
-      >
-        🔍   
-      </button>
-    </div>
-  </form>
-)
-
-function SearchStatusDisplay({
-  results,
-  searchState
-}: {
-  results: string[]
-  searchState: 'init' | 'search' | 'success' | 'failure'
-}) {
-  const content = (() => {
-    switch (searchState) {
-      case 'init':
-        return null;
-      case 'search':
-        return <LoadingAnimation />;
-      case 'success':
-        return <InteractiveEmojiArray emojiList={results} />;
-      case 'failure':
-        return "Failed to search";
-      default:
-        return null;
-    }
-  })();
-
-  return (<div className="mt-5">{content}</div>);
-}
+const EMOJI_SEARCH_API = process.env.NEXT_PUBLIC_EMOJI_SEARCH_API
 
 export default function EmojiSearch({
   slug,
   title,
   description
-}:{
+}: {
   slug: string
   title: string
   description: string
 }) {
-  const [query, setQuery] = useState('');
-  const [searchState, setSearchState] = useState<'init' | 'search' | 'success' | 'failure'>('init');
-  const [results, setResults] = useState<string[]>([]);
-  const emoji_search_api = "/api/search";
-  const num_retries = 100;
-  const retry_delay = 100;
+  const [query, setQuery] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [results, setResults] = useState<string[]>([])
+  const [error, setError] = useState('')
 
-  useEffect(() => {
-    // Warm up the API on page load (with a random number to prevent cache activation)
-    const warmUpApi = async () => {
-      try {
-        const randomNum = Math.floor(Math.random() * 100000)
-        await fetch(`${emoji_search_api}?query=warmup${randomNum}`)
-      } catch (error) {
-        console.error('Error warming up emoji search API:', error)
-      }
-    }
-    warmUpApi()
-  }, [])
-
-  async function handleSubmit(event: React.FormEvent) {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
-    if (!query.trim()) {
-      return
-    } else {
-      setSearchState('search')
-    }
-    const url = `${emoji_search_api}?query=${encodeURIComponent(query)}`
+    const trimmedQuery = query.trim()
     
-    const fetchWithRetry = async (url: string, retries: number = num_retries, delay: number = retry_delay) => {
-      for (let i = 0; i < retries; i++) {
-        try {
-          const response = await fetch(url)
-          if (response.ok) {
-            return await response.json()
-          }
-        } catch (error) {
-          if (i === retries - 1) throw error
-        }
-        await new Promise(resolve => setTimeout(resolve, delay))
-      }
-      throw new Error('Failed to fetch after multiple attempts')
-    }
+    if (!trimmedQuery || !EMOJI_SEARCH_API) return
+    
+    setIsLoading(true)
+    setError('')
 
     try {
-      const data = await fetchWithRetry(url)
-      setSearchState('success')
-      setResults(data)
-    } catch (error) {
-      setSearchState('failure')
-      console.error('Error fetching emoji search:', error)
+      const response = await fetch(
+        `${EMOJI_SEARCH_API}?query=${encodeURIComponent(trimmedQuery)}`,
+        {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+          }
+        }
+      )
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
+      const reader = response.body?.getReader()
+      if (!reader) {
+        throw new Error('Response body is null')
+      }
+
+      let result = ''
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        result += new TextDecoder().decode(value)
+      }
+
+      try {
+        const data = JSON.parse(result)
+        if (!Array.isArray(data)) {
+          throw new Error(`Invalid response format. Expected array, got: ${typeof data}`)
+        }
+        setResults(data)
+      } catch (parseError) {
+        throw new Error(`JSON parse error: ${parseError instanceof Error ? parseError.message : 'Unknown parsing error'}`)
+      }
+
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error occurred'
+      setError("😞⛔⁉️\nHmm, something went wrong. Please try again.")
+      console.error('Search error:', {
+        message: errorMessage,
+        query: trimmedQuery,
+        api: EMOJI_SEARCH_API,
+        errorObject: err
+      })
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -130,17 +85,34 @@ export default function EmojiSearch({
       <PageTitle />
       <h1 className="sr-only">{title}</h1>
       <p className="sr-only">{description}</p>
-      <span className="sr-only">{slug}</span>
-     <SearchForm
-        query={query}
-        setQuery={setQuery}
-        onSubmit={handleSubmit}
-        searchState={searchState}
-      />
-      <SearchStatusDisplay
-        results={results}
-        searchState={searchState}
-      />
+      <p className="sr-only">{slug}</p>
+      
+      <form onSubmit={handleSubmit} className="flex flex-col items-center w-full max-w-xl">
+        <div className="w-full flex justify-center">
+          <input
+            name="query"
+            value={query}
+            placeholder="Type to search..."
+            onChange={e => setQuery(e.target.value)}
+            className={`w-full px-4 py-2 border rounded-lg mr-2 bg-inherit
+              ${isLoading ? 'cursor-wait' : ''}`}
+            disabled={isLoading}
+          />
+          <button 
+            type="submit"
+            className={`px-2 bg-transparent hover:scale-125 transform transition-transform duration-150 text-2xl
+              ${isLoading ? 'cursor-wait' : ''}`}
+            disabled={isLoading}
+          >
+            🔍
+          </button>
+        </div>
+        {error && <p className="text-red-500 mt-2">{error}</p>}
+      </form>
+      <div className="mt-5">
+        {isLoading && <LoadingAnimation />}
+        {!isLoading && results.length > 0 && <InteractiveEmojiArray emojiList={results} />}
+      </div>
     </div>
   )
 }
