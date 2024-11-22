@@ -5,14 +5,14 @@ import MarkdownRenderer from '@/components/MarkdownRenderer';
 import { notFound } from 'next/navigation';
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default async function ProjectAboutPage({ params }: Props) {
   try {
-    const { slug } = params;
+    const { slug } = await params;
     const markdownFile = readFileSync(
       join(process.cwd(), `src/content/projects/${slug}/about.md`),
       'utf-8'
