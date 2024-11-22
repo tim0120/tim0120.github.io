@@ -37,5 +37,6 @@ One other limitation that I personally want to improve on is the lack of keybind
 Finally, I'm using Vercel and HuggingFace free tiers, so hopefully this keeps working (been generally great so far). 🤞
 
 #### Miscellany
-- It was fun to add some small nice UI additions to the site, like the InteractiveEmoji component that does hover-scaling and clipboard-copying on click. Going to add a confirmation of the copy soon too. (Thanks to #feedback.)
-- Of the many artifacts of this work, there is a curious case of the egg emoji 🥚. My users and I discovered that 🥚 is very ubiquitous among search results, coming up in many, many unrelated searches, e.g., "fingers crossed," "excel," "elusive," "Tokyo," and "anything but an egg." I would suspect an unnormalized 🥚 embedding vector, but the model's embeddings are normalized so the mystery remains unsolved for now...
+It was fun to add some small nice UI additions to the site, like the InteractiveEmoji component that does hover-scaling and clipboard-copying on click. Going to add a confirmation of the copy soon too. (Thanks to #feedback.)
+
+Of the many artifacts of this work, there is a curious case of the egg emoji 🥚. My users and I discovered that 🥚 is very ubiquitous among search results, coming up in many, many unrelated searches, e.g., "fingers crossed," "excel," "elusive," "Tokyo," and "anything but an egg." I would suspect an unnormalized 🥚 embedding vector, but the model's embeddings are normalized so the mystery remains unsolved for now...
