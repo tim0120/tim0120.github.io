@@ -1,19 +1,15 @@
 name: Deploy Next.js to GitHub Pages
-
 on:
   push:
     branches: ["main"]
   workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
   id-token: write
-
 concurrency:
   group: "pages"
   cancel-in-progress: false
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -40,6 +36,7 @@ jobs:
           else
             echo "NEXT_PUBLIC_EMOJI_SEARCH_API is set (value hidden)"
           fi
+          npm run build
         env:
           NEXT_PUBLIC_EMOJI_SEARCH_API: ${{ secrets.NEXT_PUBLIC_EMOJI_SEARCH_API }}
         
@@ -47,7 +44,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
-
   deploy:
     environment:
       name: github-pages
