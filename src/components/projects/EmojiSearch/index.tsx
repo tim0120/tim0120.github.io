@@ -107,7 +107,7 @@ export default function EmojiSearch({
             🔍
           </button>
         </div>
-        {error && <p className="text-red-500 mt-2">{error}</p>}
+        {error && results.length === 0 && <p className="text-red-500 mt-2">{error}</p>}
       </form>
       <div className="mt-5">
         {isLoading && <LoadingAnimation />}
