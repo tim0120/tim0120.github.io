@@ -34,7 +34,12 @@ jobs:
         run: npm ci
         
       - name: Build with Next.js
-        run: npm run build
+        run: |
+          if [ -z "$NEXT_PUBLIC_EMOJI_SEARCH_API" ]; then
+            echo "Warning: NEXT_PUBLIC_EMOJI_SEARCH_API is not set"
+          else
+            echo "NEXT_PUBLIC_EMOJI_SEARCH_API is set (value hidden)"
+          fi
         env:
           NEXT_PUBLIC_EMOJI_SEARCH_API: ${{ secrets.NEXT_PUBLIC_EMOJI_SEARCH_API }}
         
