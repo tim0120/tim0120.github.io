@@ -12,7 +12,7 @@ interface Props {
 
 export default async function ProjectAboutPage({ params }: Props) {
   try {
-    const { slug } = await params;
+    const { slug } = params;
     const markdownFile = readFileSync(
       join(process.cwd(), `src/content/projects/${slug}/about.md`),
       'utf-8'
