@@ -23,12 +23,6 @@ export default function EmojiSearch({
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
     const trimmedQuery = query.trim()
-
-    console.log('Debug info:', {
-      apiUrl: EMOJI_SEARCH_API,
-      query: trimmedQuery,
-      hasApi: !!EMOJI_SEARCH_API
-    })
     
     if (!trimmedQuery || !EMOJI_SEARCH_API) return
     
