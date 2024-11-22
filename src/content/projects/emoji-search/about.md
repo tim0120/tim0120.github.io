@@ -18,7 +18,9 @@ Emoji Search is my search engine for emojis. I was motivated to make this by my 
 <!-- ### v2.0.0: Neural emoji search -->
 <!-- ### v1.1.0: Nice things, keyboard users rejoice -->
 ### v1.0.0: Text Embeddings and 🥚
-The first release of Emoji Search introduces the main functionality of the work: the ability to search for emojis that match arbitrary text queries. A little rough around the edges, but gets the job done. Was very fun (and painful) to get this going -- the Github Pages-Vercel-HuggingFace orchestration took more effort then expected. 😅
+*Release Date: 2024-11-21*
+
+The first release of Emoji Search introduces the main functionality of the work: the ability to search for emojis that match arbitrary text queries. A little rough around the edges, but gets the job done. Was very fun (and painful) to get this going -- the Github Pages-Vercel-HuggingFace orchestration took more effort than expected. 😅
 
 #### Method
 The process for finding a set of emojis matching a text query is as follows:
