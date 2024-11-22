@@ -36,7 +36,7 @@ jobs:
       - name: Build with Next.js
         run: npm run build
         env:
-          EMOJI_SEARCH_API: ${{ secrets.EMOJI_SEARCH_API }}
+          NEXT_PUBLIC_EMOJI_SEARCH_API: ${{ secrets.NEXT_PUBLIC_EMOJI_SEARCH_API }}
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
