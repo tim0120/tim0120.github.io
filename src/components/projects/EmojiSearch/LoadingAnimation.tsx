@@ -1,3 +1,4 @@
+import InteractiveEmoji from "./InteractiveEmoji";
 import { RandomInteractiveEmoji } from "./InteractiveEmoji";
 
 // function SingleSpinner() {
@@ -28,7 +29,7 @@ import { RandomInteractiveEmoji } from "./InteractiveEmoji";
 
 import { useEffect, useState } from 'react';
 
-function SingleJumper(
+function Jumper(
   props: { 
     emoji: JSX.Element, 
     idx: number, 
@@ -55,12 +56,48 @@ function SingleJumper(
   );
 }
 
-const numEmojis = 6;
+function Naysayer(
+  props: { 
+    emoji: JSX.Element, 
+    idx: number, 
+    moveIdx: number 
+  }
+) {
+  const { emoji, idx, moveIdx: moveTime } = props;
+  return (
+    <>
+    <div style={{
+      animation: idx === moveTime ? 'naysay 1s ease forwards' : 'none'
+    }}>
+     <div>{emoji}</div>
+    </div>
+    
+    <style>{`
+      @keyframes naysay {
+        0% { transform: translateX(0) }
+        33% { transform: translateX(10px) }
+        66% { transform: translateX(-10px) }
+        100% { transform: translateX(0) }
+      }
+    `}</style>
+    </>
+  );
+}
 
-export default function LoadingAnimation() {
+const numEmojis = 6;
+const failureEmojis = ['😢', '😭', '😞', '😔', '😟', '😕', '⛔', '👻', '💣', '💔', '❓', '🧌', '🥚', '⚠️', '😡', '👿', '🥺', '☣️'];
+const getRandomFailureEmojis = (count: number, emojis: string[]): string[] => {
+  const shuffled = [...emojis].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+};
+const selectedFailureEmojis = getRandomFailureEmojis(numEmojis, failureEmojis);
+
+export default function LoadingAnimation({ status }: { status: 'loading' | 'failed' }) {
   const [time, setTime] = useState(0);
   const [emojiComponents] = useState(() => 
-    Array.from({ length: numEmojis }).map((_, index) => <RandomInteractiveEmoji key={index}/>)
+    status === 'loading' 
+      ? Array.from({ length: numEmojis }).map((_, index) => <RandomInteractiveEmoji key={index}/>)
+      : Array.from({ length: numEmojis }).map((_, index) => <InteractiveEmoji key={index} emojiChar={selectedFailureEmojis[index]}/>)
   );
 
   useEffect(() => {
@@ -70,17 +107,19 @@ export default function LoadingAnimation() {
     return () => clearInterval(interval);
   }, []);
 
-  const jumpIdx = time % numEmojis;
+  const animationIdx = time % numEmojis;
   
   return (
     <>
     <div className="text-4xl text-center flex justify-center space-x-4 mt-4">
       {emojiComponents.map((emojiComponent, i) => (
-        <SingleJumper key={i} emoji={emojiComponent} idx={i} jumpIdx={jumpIdx} />
+        status === 'loading' ? 
+          <Jumper key={i} emoji={emojiComponent} idx={i} jumpIdx={animationIdx} /> :
+          <Naysayer key={i} emoji={emojiComponent} idx={i} moveIdx={animationIdx} />
       ))}
     </div>
     <div className="text-sm text-center mt-2 text-gray-500">
-      Searching{'.'.repeat((time % 3) + 1)}
+      {`Search${status === 'loading' ? 'ing' : ' failed'}${'.'.repeat((time % 3) + 1)}`}
     </div>
     </>
   );

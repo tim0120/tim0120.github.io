@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import PageNav from "@/components/PageNav";
-import Footer from "@/components/Footer";
+import Copyright from "@/components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,7 +32,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased px-5 pt-10 sm:px-30 sm:pt-16 lg:px-60`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased px-5 pt-10 sm:px-30 sm:pt-16 lg:px-60 flex flex-col`}>
         <ThemeProvider>
           <header>
             <PageNav />
@@ -40,7 +40,9 @@ export default function RootLayout({
           <main>
             {children}
           </main>
-          <Footer />
+          <footer>
+            <Copyright />
+          </footer>
         </ThemeProvider>
       </body>
     </html>

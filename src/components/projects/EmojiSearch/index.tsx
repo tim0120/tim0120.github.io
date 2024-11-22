@@ -68,7 +68,7 @@ export default function EmojiSearch({
 
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Unknown error occurred'
-      setError("😞⛔⁉️\nHmm, something went wrong. Please try again.")
+      setError("Oh no! We've encountered an error!")
       console.error('Search error:', {
         message: errorMessage,
         query: trimmedQuery,
@@ -81,11 +81,20 @@ export default function EmojiSearch({
   }
 
   return (
-    <div className="p-8 flex flex-col items-center">
+    <div className="p-8 flex flex-col items-center relative">
       <PageTitle />
       <h1 className="sr-only">{title}</h1>
       <p className="sr-only">{description}</p>
       <p className="sr-only">{slug}</p>
+      <div className="text-center text-sm mb-4">
+        <p className="text-gray-500 inline-block mr-2">v1.0.0</p>
+        <a 
+          href={`/projects/${slug}/about`} 
+          className="text-blue-500 hover:underline inline-block"
+        >
+          about
+        </a>
+      </div>
       
       <form onSubmit={handleSubmit} className="flex flex-col items-center w-full max-w-xl">
         <div className="w-full flex justify-center">
@@ -107,11 +116,11 @@ export default function EmojiSearch({
             🔍
           </button>
         </div>
-        {error && results.length === 0 && <p className="text-red-500 mt-2">{error}</p>}
       </form>
-      <div className="mt-5">
-        {isLoading && <LoadingAnimation />}
-        {!isLoading && results.length > 0 && <InteractiveEmojiArray emojiList={results} />}
+      <div className="mt-8">
+        {isLoading && <LoadingAnimation status='loading'/>}
+        {!isLoading && error && <LoadingAnimation status='failed'/>}
+        {!isLoading && !error && results.length > 0 && <InteractiveEmojiArray emojiList={results} />}
       </div>
     </div>
   )
