@@ -1,16 +1,20 @@
 import InteractiveEmoji from "./InteractiveEmoji";
 
 interface Props {
-  emojiList: string[]
+  emojiList: string[],
+  onEmojiClick: () => void
 }
 
-export default function InteractiveEmojiArray({ emojiList }: Props) {
+export default function InteractiveEmojiArray({
+  emojiList,
+  onEmojiClick
+}: Props) {
   return (
     <>
       <div className="text-3xl sm:text-4xl grid grid-cols-10 grid-rows-3 gap-2">
         {emojiList.map((emoji, i) => (
           <div key={i} className="flex justify-center">
-            <InteractiveEmoji emojiChar={emoji} />
+            <InteractiveEmoji emojiChar={emoji} onEmojiClick={onEmojiClick} />
           </div>
         ))}
       </div>

@@ -4,9 +4,11 @@ import { RandomInteractiveEmoji } from "./InteractiveEmoji"
 const numEmojis = 3
 const title = 'Emoji\nSearch'
 
-export default function PageTitle() {
+function PageTitle({ onEmojiClick }: { onEmojiClick: () => void }) {
   const [emojis] = useState(() => 
-    Array.from({ length: numEmojis }).map((_, index) => <RandomInteractiveEmoji key={index} />)
+    Array.from({ length: numEmojis }).map((_, index) => (
+      <RandomInteractiveEmoji key={index} onEmojiClick={onEmojiClick} />
+    ))
   );
 
   return (
@@ -26,4 +28,7 @@ export default function PageTitle() {
         </div>
       </div>
     </div>
-  )}
+  );
+}
+
+export default PageTitle;

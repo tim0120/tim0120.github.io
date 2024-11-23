@@ -7,6 +7,11 @@ versions:
     changes:
       - 'Initial release'
       - 'Basic search functionality'
+  '1.1.0':
+    date: '2024-11-22'
+    changes:
+      - 'Copy confirmation button'
+      - 'Better user prompting for retry'
 ---
 
 <!-- This link is the best that I can do simply. Not ideal, as it's not robust to changes, but I liked the idea of sticking to the Markdown vibe for the whole about page, so this is what we get. Overall: 7/10. -->
@@ -18,6 +23,16 @@ Emoji Search is my search engine for emojis. I was motivated to make this by my 
 ## Updates
 <!-- ### v2.0.0: Neural emoji search -->
 <!-- ### v1.1.0: Nice things, keyboard users rejoice -->
+### v1.1.0: Copy Confirmation and (Hopefully) Some Clarity
+*Release Date: 2024-11-22*
+
+A couple usability updates:
+- Clicking (or tapping) any emoji (other than the search magnifying glass and the sun/moon toggle) will now show a small message that says "Emoji copied!" at the bottom of the screen (in addition to copying the emoji to the clipboard as already was done).
+- The failure message (for when things go bad in the backend) is now (hopefully) clearer, as it prompts the user (in bold) to "**Please try resubmitting!**" Hoping that this reduces complaints and enables a little more agency in this world. \s
+
+#### Miscellany
+Changing version numbers by hand is fine..for now.
+
 ### v1.0.0: Text Embeddings and 🥚
 *Release Date: 2024-11-21*
 

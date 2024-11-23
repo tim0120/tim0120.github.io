@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 export default function InteractiveEmoji({
-  emojiChar: char
+  emojiChar: char,
+  onEmojiClick
 }:{
-  emojiChar: string
+  emojiChar: string,
+  onEmojiClick: () => void
 }) {
   const emojiRegex = /(\p{Emoji_Presentation}|\p{Emoji}\uFE0F)/u;
   if (!emojiRegex.test(char)) {
@@ -12,15 +14,18 @@ export default function InteractiveEmoji({
 
   return (
     <div
-      className="hover:scale-125 transform transition-transform duration-25 hover:cursor-pointer"
-      onClick={() => {navigator.clipboard.writeText(char)}}
+      className="ease-out hover:scale-125 transform transition-transform duration-75 hover:cursor-pointer"
+      onClick={() => {
+        navigator.clipboard.writeText(char);
+        onEmojiClick();
+      }}
     >
       {char}
     </div>
   )
 }
 
-export function RandomInteractiveEmoji() {
+export function RandomInteractiveEmoji({ onEmojiClick }: { onEmojiClick: () => void }) {
   const [emojis, setEmojis] = useState<string[]>([]);
 
   useEffect(() => {
@@ -45,6 +50,6 @@ export function RandomInteractiveEmoji() {
   }
 
   return (
-    <InteractiveEmoji emojiChar={randomEmoji} />
+    <InteractiveEmoji emojiChar={randomEmoji} onEmojiClick={onEmojiClick} />
   );
 }

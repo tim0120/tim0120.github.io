@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PageTitle from './EmojiTitle'
 import InteractiveEmojiArray from './InteractiveEmojiArray'
 import LoadingAnimation from './LoadingAnimation'
@@ -19,6 +19,25 @@ export default function EmojiSearch({
   const [isLoading, setIsLoading] = useState(false)
   const [results, setResults] = useState<string[]>([])
   const [error, setError] = useState('')
+  const [popupVisible, setPopupVisible] = useState(false)
+
+  const handleEmojiClick = () => {
+    setPopupVisible(true);
+  };
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null;
+    if (popupVisible) {
+      timeoutId = setTimeout(() => {
+        setPopupVisible(false);
+      }, 1500);
+    }
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [popupVisible]);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
@@ -82,12 +101,12 @@ export default function EmojiSearch({
 
   return (
     <div className="p-8 flex flex-col items-center relative">
-      <PageTitle />
+      <PageTitle onEmojiClick={handleEmojiClick} />
       <h1 className="sr-only">{title}</h1>
       <p className="sr-only">{description}</p>
       <p className="sr-only">{slug}</p>
       <div className="text-center text-sm mb-4">
-        <p className="text-gray-500 inline-block mr-2">v1.0.0</p>
+        <p className="text-gray-500 inline-block mr-2">v1.1.0</p>
         <a 
           href={`/projects/${slug}/about`} 
           className="text-blue-500 hover:underline inline-block"
@@ -118,9 +137,14 @@ export default function EmojiSearch({
         </div>
       </form>
       <div className="mt-8">
-        {isLoading && <LoadingAnimation status='loading'/>}
-        {!isLoading && error && <LoadingAnimation status='failed'/>}
-        {!isLoading && !error && results.length > 0 && <InteractiveEmojiArray emojiList={results} />}
+        {isLoading && <LoadingAnimation status='loading' onEmojiClick={handleEmojiClick}/>}
+        {!isLoading && error && <LoadingAnimation status='failed' onEmojiClick={handleEmojiClick}/>}
+        {!isLoading && !error && results.length > 0 && (
+          <InteractiveEmojiArray emojiList={results} onEmojiClick={handleEmojiClick} />
+        )}
+        <div className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-emerald-400 text-white text-center p-2 rounded-md transition-opacity duration-300 ${popupVisible ? 'opacity-50' : 'opacity-0'}`}>
+          Emoji copied!
+        </div>
       </div>
     </div>
   )

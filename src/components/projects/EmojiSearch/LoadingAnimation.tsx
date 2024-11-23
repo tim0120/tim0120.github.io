@@ -92,12 +92,18 @@ const getRandomFailureEmojis = (count: number, emojis: string[]): string[] => {
 };
 const selectedFailureEmojis = getRandomFailureEmojis(numEmojis, failureEmojis);
 
-export default function LoadingAnimation({ status }: { status: 'loading' | 'failed' }) {
+export default function LoadingAnimation({
+  status,
+  onEmojiClick
+}: {
+  status: 'loading' | 'failed'
+  onEmojiClick: () => void
+}) {
   const [time, setTime] = useState(0);
   const [emojiComponents] = useState(() => 
     status === 'loading' 
-      ? Array.from({ length: numEmojis }).map((_, index) => <RandomInteractiveEmoji key={index}/>)
-      : Array.from({ length: numEmojis }).map((_, index) => <InteractiveEmoji key={index} emojiChar={selectedFailureEmojis[index]}/>)
+      ? Array.from({ length: numEmojis }).map((_, index) => <RandomInteractiveEmoji key={index} onEmojiClick={onEmojiClick}/>)
+      : Array.from({ length: numEmojis }).map((_, index) => <InteractiveEmoji key={index} emojiChar={selectedFailureEmojis[index]} onEmojiClick={onEmojiClick}/>)
   );
 
   useEffect(() => {
