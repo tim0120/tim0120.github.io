@@ -14,9 +14,19 @@ export default function InteractiveEmoji({
 
   return (
     <div
-      className="ease-out hover:scale-125 transform transition-transform duration-75 hover:cursor-pointer"
+      className="ease-out transform transition-transform duration-75 hover:scale-125 hover:cursor-pointer"
       onClick={() => {
         navigator.clipboard.writeText(char);
+        onEmojiClick();
+      }}
+      onTouchStart={(e) => {
+        e.preventDefault();
+        e.currentTarget.style.transform = 'scale(1.25)';
+        navigator.clipboard.writeText(char);
+      }}
+      onTouchEnd={(e) => {
+        e.preventDefault();
+        e.currentTarget.style.transform = 'scale(1)';
         onEmojiClick();
       }}
     >
