@@ -75,8 +75,8 @@ function Naysayer(
     <style>{`
       @keyframes naysay {
         0% { transform: translateX(0) }
-        33% { transform: translateX(10px) }
-        66% { transform: translateX(-10px) }
+        33% { transform: translateX(5px) }
+        66% { transform: translateX(-5px) }
         100% { transform: translateX(0) }
       }
     `}</style>
@@ -119,7 +119,7 @@ export default function LoadingAnimation({ status }: { status: 'loading' | 'fail
       ))}
     </div>
     <div className="text-sm text-center mt-2 text-gray-500">
-      {status === 'loading' ? `Searching${'.'.repeat((time % 3) + 1)}` : 'Search failed, please try again!'}
+      {status === 'loading' ? `Searching${'.'.repeat((time % 3) + 1)}` : <>Sorry, we were not ready for that request!<br/><strong>Please try resubmitting!</strong></>}
     </div>
     </>
   );
