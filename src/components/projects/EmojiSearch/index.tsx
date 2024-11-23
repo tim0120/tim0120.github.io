@@ -106,7 +106,7 @@ export default function EmojiSearch({
       <p className="sr-only">{description}</p>
       <p className="sr-only">{slug}</p>
       <div className="text-center text-sm mb-4">
-        <p className="text-gray-500 inline-block mr-2">v1.1.0</p>
+        <p className="text-gray-500 inline-block mr-2">v1.1.1</p>
         <a 
           href={`/projects/${slug}/about`} 
           className="text-blue-500 hover:underline inline-block"

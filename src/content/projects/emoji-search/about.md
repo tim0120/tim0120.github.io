@@ -12,6 +12,10 @@ versions:
     changes:
       - 'Copy confirmation button'
       - 'Better user prompting for retry'
+  '1.1.1':
+    date: '2024-11-23'
+    changes:
+      - 'Fixed copying on mobile (Safari and Chrome)'
 ---
 
 <!-- This link is the best that I can do simply. Not ideal, as it's not robust to changes, but I liked the idea of sticking to the Markdown vibe for the whole about page, so this is what we get. Overall: 7/10. -->
@@ -23,6 +27,11 @@ Emoji Search is my search engine for emojis. I was motivated to make this by my 
 ## Updates
 <!-- ### v2.0.0: Neural emoji search -->
 <!-- ### v1.1.0: Nice things, keyboard users rejoice -->
+### v1.1.1: Mobile Copying Fixed!
+*Release Date: 2024-11-23*
+
+Copying wasn't working on mobile, so had to create a hacky fix for it. #deprecatedmethodsmattertoo
+
 ### v1.1.0: Copy Confirmation and (Hopefully) Some Clarity
 *Release Date: 2024-11-22*
 
