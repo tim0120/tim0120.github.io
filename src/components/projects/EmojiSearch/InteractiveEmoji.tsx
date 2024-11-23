@@ -19,14 +19,12 @@ export default function InteractiveEmoji({
         navigator.clipboard.writeText(char);
         onEmojiClick();
       }}
-      onTouchStart={async (e) => {
-        e.preventDefault();
+      onTouchStart={(e) => {
         e.currentTarget.style.transform = 'scale(1.25)';
-        await handleMobileCopy(char, e.currentTarget);
       }}
-      onTouchEnd={(e) => {
-        e.preventDefault();
+      onTouchEnd={async (e) => {
         e.currentTarget.style.transform = 'scale(1)';
+        await handleMobileCopy(char);
         onEmojiClick();
       }}
     >
@@ -64,18 +62,20 @@ export function RandomInteractiveEmoji({ onEmojiClick }: { onEmojiClick: () => v
   );
 }
 
-const handleMobileCopy = async (char: string, element: HTMLElement): Promise<boolean> => {
+// hacky workaround for mobile copy
+const handleMobileCopy = async (char: string): Promise<boolean> => {
   try {
-    element.style.transform = 'scale(1.25)';
-
-    // Prefer the modern API
+    // Try the modern API first, doesn't work on Safari for iOS 18.1.1
     if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(char);
-      return true;
+      try {
+        await navigator.clipboard.writeText(char);
+        return true;
+      } catch (err) {
+        console.warn('Modern clipboard API failed, falling back to deprecated method:', err);
+      }
     }
 
-    // If we're here, clipboard API isn't available (mainly older iOS Safari)
-    // Show warning in console for developers
+    // Fallback to deprecated version if modern API fails or is unavailable
     console.warn('Using deprecated fallback clipboard API. Please ensure site is served over HTTPS for best compatibility.');
     
     const textArea = document.createElement('textarea');
@@ -100,8 +100,6 @@ const handleMobileCopy = async (char: string, element: HTMLElement): Promise<boo
     textArea.select();
 
     try {
-      // TypeScript will still warn about this, but we can ignore it
-      // document.execCommand('copy') is used as a fallback for iOS Safari
       document.execCommand('copy');
       return true;
     } finally {
