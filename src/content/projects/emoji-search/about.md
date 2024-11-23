@@ -9,6 +9,7 @@ versions:
       - 'Basic search functionality'
 ---
 
+<!-- This link is the best that I can do simply. Not ideal, as it's not robust to changes, but I liked the idea of sticking to the Markdown vibe for the whole about page, so this is what we get. Overall: 7/10. -->
 [<< Back to Emoji Search](https://tim0120.github.io/projects/emoji-search)
 
 ## About Emoji Search
