@@ -9,7 +9,7 @@ const PROJECTS: ProjectType[] = [
   {
     slug: 'emoji-search',
     title: 'Emoji Search',
-    description: 'Interactive emoji search tool',
+    description: 'An emoji search engine 🔍',
   },
   // Add more projects
 ]
@@ -22,4 +22,8 @@ export async function getProjectData(slug: string): Promise<ProjectType> {
 
 export function getAllProjectSlugs(): string[] {
   return PROJECTS.map(project => project.slug)
+}
+
+export function getAllProjects(): ProjectType[] {
+  return PROJECTS
 }
