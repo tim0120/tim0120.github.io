@@ -22,7 +22,7 @@ export default function InteractiveEmoji({
       onTouchStart={async (e) => {
         e.preventDefault();
         e.currentTarget.style.transform = 'scale(1.25)';
-        handleMobileCopy(char, e.currentTarget);
+        await handleMobileCopy(char, e.currentTarget);
       }}
       onTouchEnd={(e) => {
         e.preventDefault();
