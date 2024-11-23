@@ -26,7 +26,7 @@ export default function InteractiveEmojiArray({
   return (
     <>
       <div className={clsx(
-        "text-5xl sm:text-5xl grid gap-4 sm:gap-4",
+        "text-4xl sm:text-5xl grid gap-3 sm:gap-4",
         {
           'grid-cols-6 grid-rows-5': isSmallScreen,
           'grid-cols-10 grid-rows-3': !isSmallScreen
