@@ -142,7 +142,7 @@ export default function EmojiSearch({
         {!isLoading && !error && results.length > 0 && (
           <InteractiveEmojiArray emojiList={results} onEmojiClick={handleEmojiClick} />
         )}
-        <div className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-emerald-400 text-white text-center p-2 rounded-md transition-opacity duration-300 ${popupVisible ? 'opacity-50' : 'opacity-0'}`}>
+        <div className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-emerald-500 text-white text-center p-2 rounded-md transition-opacity duration-300 ${popupVisible ? 'opacity-90' : 'opacity-0'}`}>
           Emoji copied!
         </div>
       </div>
