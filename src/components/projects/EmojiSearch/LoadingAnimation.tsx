@@ -119,7 +119,7 @@ export default function LoadingAnimation({ status }: { status: 'loading' | 'fail
       ))}
     </div>
     <div className="text-sm text-center mt-2 text-gray-500">
-      {status === 'loading' ? `Searching${'.'.repeat((time % 3) + 1)}` : `Search failed, please try again${'!'.repeat((time % 3) + 1)}`}
+      {status === 'loading' ? `Searching${'.'.repeat((time % 3) + 1)}` : 'Search failed, please try again!'}
     </div>
     </>
   );
