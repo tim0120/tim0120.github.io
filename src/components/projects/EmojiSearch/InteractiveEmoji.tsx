@@ -22,7 +22,7 @@ export default function InteractiveEmoji({
       onTouchStart={async (e) => {
         e.preventDefault();
         e.currentTarget.style.transform = 'scale(1.25)';
-        await navigator.clipboard.writeText(char);
+        handleMobileCopy(char, e.currentTarget);
       }}
       onTouchEnd={(e) => {
         e.preventDefault();
@@ -63,3 +63,52 @@ export function RandomInteractiveEmoji({ onEmojiClick }: { onEmojiClick: () => v
     <InteractiveEmoji emojiChar={randomEmoji} onEmojiClick={onEmojiClick} />
   );
 }
+
+const handleMobileCopy = async (char: string, element: HTMLElement): Promise<boolean> => {
+  try {
+    element.style.transform = 'scale(1.25)';
+
+    // Prefer the modern API
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(char);
+      return true;
+    }
+
+    // If we're here, clipboard API isn't available (mainly older iOS Safari)
+    // Show warning in console for developers
+    console.warn('Using deprecated fallback clipboard API. Please ensure site is served over HTTPS for best compatibility.');
+    
+    const textArea = document.createElement('textarea');
+    textArea.value = char;
+    
+    textArea.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 2em;
+      height: 2em;
+      padding: 0;
+      border: none;
+      outline: none;
+      boxShadow: none;
+      background: transparent;
+      opacity: 0;
+    `;
+
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+      // TypeScript will still warn about this, but we can ignore it
+      // document.execCommand('copy') is used as a fallback for iOS Safari
+      document.execCommand('copy');
+      return true;
+    } finally {
+      document.body.removeChild(textArea);
+    }
+  } catch (err) {
+    console.error('Copy failed:', err);
+    return false;
+  }
+};
