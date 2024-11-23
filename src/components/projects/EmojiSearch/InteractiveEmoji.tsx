@@ -19,10 +19,10 @@ export default function InteractiveEmoji({
         navigator.clipboard.writeText(char);
         onEmojiClick();
       }}
-      onTouchStart={(e) => {
+      onTouchStart={async (e) => {
         e.preventDefault();
         e.currentTarget.style.transform = 'scale(1.25)';
-        navigator.clipboard.writeText(char);
+        await navigator.clipboard.writeText(char);
       }}
       onTouchEnd={(e) => {
         e.preventDefault();
