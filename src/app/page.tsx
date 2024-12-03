@@ -30,7 +30,7 @@ export default function Home() {
               { href: "/documents/resume.pdf", src: "/images/file-text.svg" },
               { href: "https://github.com/tim0120", src: "/images/github.svg" },
               { href: "https://twitter.com/thkostolansky", src: "/images/twitter.svg" },
-              { href: "https://linkedin.com/in/kostolansky", src: "/images/linkedin.svg" }
+              { href: "https://linkedin.com/in/thkostolansky", src: "/images/linkedin.svg" }
             ].map((link, index) => (
               <Link key={index} href={link.href} target="_blank" rel="noopener noreferrer">
                 <ThemeAwareSvg src={link.src} />
