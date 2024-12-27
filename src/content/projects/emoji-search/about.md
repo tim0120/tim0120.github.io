@@ -1,6 +1,6 @@
 ---
 title: Emoji Search
-currentVersion: '1.0.0'
+currentVersion: '1.2.0'
 versions:
   '1.0.0':
     date: '2024-11-21'
@@ -16,6 +16,10 @@ versions:
     date: '2024-11-23'
     changes:
       - 'Fixed copying on mobile (Safari and Chrome)'
+  '1.2.0':
+    date: '2024-12-26'
+    changes:
+      - 'Improved performance with OpenAI embeddings'
 ---
 
 <!-- This link is the best that I can do simply. Not ideal, as it's not robust to changes, but I liked the idea of sticking to the Markdown vibe for the whole about page, so this is what we get. Overall: 7/10. -->
@@ -26,7 +30,12 @@ Emoji Search is my search engine for emojis. I was motivated to make this by my 
 
 ## Updates
 <!-- ### v2.0.0: Neural emoji search -->
-<!-- ### v1.1.0: Nice things, keyboard users rejoice -->
+### v1.2.0: Embeddings Powered by OpenAI
+*Release Date: 2024-12-26*
+
+Emoji Search is now powered by OpenAI's [text-embedding-3-small](https://platform.openai.com/docs/guides/embeddings/)! This change was added to address latency issues with using HuggingFace's free inference endpoint, as well as the limited embedding capabilities of the [mixedbread-ai/mxbai-embed-large-v1 🍞](https://huggingface.co/mixedbread-ai/mxbai-embed-large-v1) model. 
+
+
 ### v1.1.1: Mobile Copying Fixed!
 *Release Date: 2024-11-23*
 
