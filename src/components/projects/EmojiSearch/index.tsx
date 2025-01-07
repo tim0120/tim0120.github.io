@@ -124,7 +124,12 @@ export default function EmojiSearch({
             onChange={e => setQuery(e.target.value)}
             className={`w-full px-4 py-2 border rounded-lg mr-2 bg-inherit
               ${isLoading ? 'cursor-wait' : ''}`}
-            disabled={isLoading}
+            onKeyDown={e => {
+              if (e.key === 'Enter' && isLoading) {
+                e.preventDefault();
+              }
+            }}
+            autoFocus={true}
           />
           <button 
             type="submit"

@@ -20,6 +20,10 @@ versions:
     date: '2024-12-26'
     changes:
       - 'Improved performance with OpenAI embeddings'
+  '1.2.1':
+    date: '2025-01-06'
+    changes:
+      - 'Auto-focusing on search box and typing during search'
 ---
 
 <!-- This link is the best that I can do simply. Not ideal, as it's not robust to changes, but I liked the idea of sticking to the Markdown vibe for the whole about page, so this is what we get. Overall: 7/10. -->
@@ -30,6 +34,11 @@ Emoji Search is my search engine for emojis. I was motivated to make this by my 
 
 ## Updates
 <!-- ### v2.0.0: Neural emoji search -->
+### v1.2.1: Auto-focus and Search UX
+*Release Date: 2025-01-06*
+
+Small quality-of-life improvements: the search box now auto-focuses when you load the page, and you can type while a search is in progress (though submitting is still blocked until the current search completes).
+
 ### v1.2.0: Embeddings Powered by OpenAI
 *Release Date: 2024-12-26*
 
