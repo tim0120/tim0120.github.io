@@ -106,7 +106,7 @@ export default function EmojiSearch({
       <p className="sr-only">{description}</p>
       <p className="sr-only">{slug}</p>
       <div className="text-center text-sm mb-4">
-        <p className="text-gray-500 inline-block mr-2">v1.2.1</p>
+        <p className="text-gray-500 inline-block mr-2">v2.0.0</p>
         <a 
           href={`/projects/${slug}/about`} 
           className="text-blue-500 hover:underline inline-block"
@@ -115,15 +115,14 @@ export default function EmojiSearch({
         </a>
       </div>
       
-      <form onSubmit={handleSubmit} className="flex flex-col items-center w-full max-w-xl">
+      <form onSubmit={handleSubmit} className="flex flex-col items-center w-[55%] max-w-xl">
         <div className="w-full flex justify-center">
           <input
             name="query"
             value={query}
-            placeholder="Type to search..."
+            placeholder="What emoji are you looking for?"
             onChange={e => setQuery(e.target.value)}
-            className={`w-full px-4 py-2 border rounded-lg mr-2 bg-inherit
-              ${isLoading ? 'cursor-wait' : ''}`}
+            className={`w-full px-4 py-2 border rounded-lg mr-2 bg-inherit text-sm`}
             onKeyDown={e => {
               if (e.key === 'Enter' && isLoading) {
                 e.preventDefault();

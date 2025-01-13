@@ -14,7 +14,7 @@ function PageTitle({ onEmojiClick }: { onEmojiClick: () => void }) {
   return (
     <div className="mb-8 relative">
       <div className="relative z-10">
-        <h1 className="text-5xl font-bold flex flex-col justify-center items-center whitespace-pre-line text-center">{title}</h1>
+        <h1 className="text-5xl sm:text-6xl font-bold flex flex-col justify-center items-center whitespace-pre-line text-center">{title}</h1>
         <div className="absolute -bottom-4 -left-4 transform text-3xl">
           {/* bottom left */}
           {emojis[0]}

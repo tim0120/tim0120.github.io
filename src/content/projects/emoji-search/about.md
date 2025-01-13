@@ -24,6 +24,10 @@ versions:
     date: '2025-01-06'
     changes:
       - 'Auto-focusing on search box and typing during search'
+  '2.0.0':
+    date: '2025-01-10'
+    changes:
+      - 'Neural emoji search released'
 ---
 
 <!-- This link is the best that I can do simply. Not ideal, as it's not robust to changes, but I liked the idea of sticking to the Markdown vibe for the whole about page, so this is what we get. Overall: 7/10. -->
@@ -33,7 +37,30 @@ versions:
 Emoji Search is my search engine for emojis. I was motivated to make this by my inability to find emojis efficiently when using [existing](https://www.macrumors.com/how-to/search-for-emoji-iphone/) [methods](https://www.raycast.com/FezVrasta/emoji). I thought that semantic search would be a simple and fun way to make a useful tool, so I made this. This effort was made possible by the [rise of language models](https://ogshoggoth.com/lllll.png) making text embedding pretty good and relatively cheap. You can find my (sorta organized) code for this [here](https://github.com/tim0120/emoji-search).
 
 ## Updates
-<!-- ### v2.0.0: Neural emoji search -->
+### v2.0.0: Neural emoji search
+*Release Date: 2025-01-10*
+
+v2 introduces neural emoji search! This technique uses synthetic data and a small MLP architecture to significantly improve the quality of emoji selections by the search engine. Real testimonials for v2 include: "wow Tim this is really great" and "this is the only app I use now."
+
+#### Methods
+The main contribution of this update is the neural search engine. The search is now "neural" because queries are now passed through an MLP that maps text embeddings to emoji distributions. Implemented as follows:
+1. Synthetic data generation: I created a synthetic dataset of text embeddings and emoji distributions. For each emoji, I generated a set of descriptions for the emoji using [gpt-4o-mini](https://platform.openai.com/docs/models#gpt-4o-mini). Then, I generated a set of emojis that matched each description. After embedding each description, the data is of the mapping (description embedding, emoji distribution).
+2. MLP trainig: I trained an MLP with 2 hidden layers to map the text embeddings to their respective emoji distributions. I also smoothed the distributions to prvent overfitting.
+3. Evalution: I asked some friends and family and they generally gave good reviews. 😀 
+
+#### Limitations
+The engine still fails for a number of eye tests, e.g. it does not include the Georgian flag when queried with "Georgia" or a skateboard when queried with "skateboard." I am considering implementing more descriptions and distributions to make sure that "obvious"/simple searches do happen "as one might expect."
+
+Emoji Search also suffers from having no formal or quantitative evaluation system. This is a problem for determining if the engine is improving or "good enough," as the current method for evaluation include eye tests from a variety of people. The training and test losses do give some signal for doing well on the synthetic dataset I generated, but I think that this is likely prone to overfitting.
+
+#### Miscellany
+I've enjoyed the progress I've made so far on this small project. In addition to the search engine itself, I'm proud of having made a nice UI/UX with a way to copy emojis with feedback for copying, auto-focusing the search bar, and creating a quick and (generally) reliable search pipeline.
+
+Some things that I've learned include:
+- Deploying a product takes lots of care and tedium. The infrastructure around getting an idea to fruition is non-trivial, and I am grateful for the many great tools that people before me have created that allow me to make something like this.
+- Synthetic data can work quite well, although good embeddings do help quite a bit. I think that making one's own heads on top of models and generating small fine-tuning datasets for small-scale purposes is much more possible now than before.
+- A user only cares about a product insofar as it working (and they generally don't care how you did it). I realized this as I shared Emoji Search with others, and I think that it's ok for me to enjoy and be proud of the idea and work that went behind something even if others (understandably) do not.
+
 ### v1.2.1: Auto-focus and Search UX
 *Release Date: 2025-01-06*
 
@@ -43,7 +70,6 @@ Small quality-of-life improvements: the search box now auto-focuses when you loa
 *Release Date: 2024-12-26*
 
 Emoji Search is now powered by OpenAI's [text-embedding-3-small](https://platform.openai.com/docs/guides/embeddings/)! This change was added to address latency issues with using HuggingFace's free inference endpoint, as well as the limited embedding capabilities of the [mixedbread-ai/mxbai-embed-large-v1 🍞](https://huggingface.co/mixedbread-ai/mxbai-embed-large-v1) model. 
-
 
 ### v1.1.1: Mobile Copying Fixed!
 *Release Date: 2024-11-23*
