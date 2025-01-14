@@ -115,7 +115,7 @@ export default function EmojiSearch({
         </a>
       </div>
       
-      <form onSubmit={handleSubmit} className="flex flex-col items-center w-[55%] max-w-xl">
+      <form onSubmit={handleSubmit} className="flex flex-col items-center w-[80%] sm:w-[60%] max-w-xl">
         <div className="w-full flex justify-center">
           <input
             name="query"
