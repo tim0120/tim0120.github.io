@@ -106,7 +106,7 @@ export default function EmojiSearch({
       <p className="sr-only">{description}</p>
       <p className="sr-only">{slug}</p>
       <div className="text-center text-sm mb-4">
-        <p className="text-gray-500 inline-block mr-2">v2.0.0</p>
+        <p className="text-gray-500 inline-block mr-2">v2.1.0</p>
         <a 
           href={`/projects/${slug}/about`} 
           className="text-blue-500 hover:underline inline-block"
@@ -122,10 +122,14 @@ export default function EmojiSearch({
             value={query}
             placeholder="What emoji are you looking for?"
             onChange={e => setQuery(e.target.value)}
-            className={`w-full px-4 py-2 border rounded-lg mr-2 bg-inherit text-sm`}
+            className={`w-full px-4 py-2 border rounded-lg mr-2 bg-inherit text-sm focus:outline-none`}
             onKeyDown={e => {
-              if (e.key === 'Enter' && isLoading) {
+              if (e.key === 'Enter') {
                 e.preventDefault();
+                if (!isLoading) {
+                  handleSubmit(e);
+                  (e.target as HTMLInputElement).select();
+                }
               }
             }}
             autoFocus={true}
@@ -135,6 +139,12 @@ export default function EmojiSearch({
             className={`px-2 bg-transparent hover:scale-125 transform transition-transform duration-150 text-2xl
               ${isLoading ? 'cursor-wait' : ''}`}
             disabled={isLoading}
+            onClick={() => {
+              const input = document.querySelector('input[name="query"]');
+              if (input) {
+                (input as HTMLInputElement).select();
+              }
+            }}
           >
             🔍
           </button>

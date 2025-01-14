@@ -28,6 +28,10 @@ versions:
     date: '2025-01-10'
     changes:
       - 'Neural emoji search released'
+  '2.1.0':
+    date: '2025-01-14'
+    changes:
+      - 'Input highlighting upon search'
 ---
 
 <!-- This link is the best that I can do simply. Not ideal, as it's not robust to changes, but I liked the idea of sticking to the Markdown vibe for the whole about page, so this is what we get. Overall: 7/10. -->
@@ -37,6 +41,11 @@ versions:
 Emoji Search is my search engine for emojis. I was motivated to make this by my inability to find emojis efficiently when using [existing](https://www.macrumors.com/how-to/search-for-emoji-iphone/) [methods](https://www.raycast.com/FezVrasta/emoji). I thought that semantic search would be a simple and fun way to make a useful tool, so I made this. This effort was made possible by the [rise of language models](https://ogshoggoth.com/lllll.png) making text embedding pretty good and relatively cheap. You can find my (sorta organized) code for this [here](https://github.com/tim0120/emoji-search).
 
 ## Updates
+### v2.1.0: Input Highlighting
+*Release Date: 2025-01-14*
+
+Small UX improvement: search input is automatically highlighted after submitting a search, making it easier to immediately search for something else.
+
 ### v2.0.0: Neural emoji search
 *Release Date: 2025-01-10*
 
