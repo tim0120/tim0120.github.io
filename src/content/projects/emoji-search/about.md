@@ -41,6 +41,11 @@ versions:
 Emoji Search is my search engine for emojis. I was motivated to make this by my inability to find emojis efficiently when using [existing](https://www.macrumors.com/how-to/search-for-emoji-iphone/) [methods](https://www.raycast.com/FezVrasta/emoji). I thought that semantic search would be a simple and fun way to make a useful tool, so I made this. This effort was made possible by the [rise of language models](https://ogshoggoth.com/lllll.png) making text embedding pretty good and relatively cheap. You can find my (sorta organized) code for this [here](https://github.com/tim0120/emoji-search).
 
 ## Updates
+### v2.1.1: Auto-Complete Off
+*Release Date: 2025-01-14*
+
+Disabled browser autocomplete to prevent interference with search input.
+
 ### v2.1.0: Input Highlighting
 *Release Date: 2025-01-14*
 
