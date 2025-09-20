@@ -4,7 +4,7 @@
 
 /* Light theme (default) */
 :root {
-  --background: #ffffff;
+  --background: #f7f3e7;
   --foreground: #171717;
   
   /* Add any other theme colors you need */
@@ -27,6 +27,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-serif), Georgia, 'Times New Roman', serif;
+  font-weight: 500;
   transition: background-color 200ms, color 200ms;
 }

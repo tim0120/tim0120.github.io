@@ -86,11 +86,6 @@ function Naysayer(
 
 const numEmojis = 6;
 const failureEmojis = ['😢', '😭', '😞', '😔', '😟', '😕', '⛔', '👻', '💣', '💔', '❓', '🧌', '🥚', '⚠️', '😡', '👿', '🥺', '☣️'];
-const getRandomFailureEmojis = (count: number, emojis: string[]): string[] => {
-  const shuffled = [...emojis].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
-};
-const selectedFailureEmojis = getRandomFailureEmojis(numEmojis, failureEmojis);
 
 export default function LoadingAnimation({
   status,
@@ -103,7 +98,7 @@ export default function LoadingAnimation({
   const [emojiComponents] = useState(() => 
     status === 'loading' 
       ? Array.from({ length: numEmojis }).map((_, index) => <RandomInteractiveEmoji key={index} onEmojiClick={onEmojiClick}/>)
-      : Array.from({ length: numEmojis }).map((_, index) => <InteractiveEmoji key={index} emojiChar={selectedFailureEmojis[index]} onEmojiClick={onEmojiClick}/>)
+      : Array.from({ length: numEmojis }).map((_, index) => <InteractiveEmoji key={index} emojiChar={failureEmojis[index % failureEmojis.length]} onEmojiClick={onEmojiClick}/>)
   );
 
   useEffect(() => {

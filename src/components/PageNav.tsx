@@ -6,11 +6,12 @@ export default function PageNav() {
   return (
     <div className="mb-8">
       <div className="flex justify-between">
-        <div className="flex items-center space-x-4">
-          <Image src="/favicon.png" alt="favicon" width={24} height={24} />
-          <Link href="/" className="hover:underline">home</Link>
-          <Link href="/blog" className="hover:underline">blog</Link>
+        <div className="flex items-center space-x-6">
+          <Link href="/" aria-label="Home">
+            <Image src="/favicon.png" alt="favicon" width={24} height={24} />
+          </Link>
           <Link href="/projects" className="hover:underline">projects</Link>
+          <Link href="/previous-work" className="hover:underline">previous work</Link>
         </div>
         <ThemeToggle />
       </div>
