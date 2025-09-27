@@ -93,7 +93,6 @@ const Publication = ({ title, authors, link, publisher }: { title: string; autho
         <Link
           href={link}
           className="text-blue-600 dark:text-blue-300 underline hover:underline"
-          target="_blank"
           rel="noopener noreferrer"
         >
           {linkLabel}

@@ -11,7 +11,8 @@ export default function PageNav() {
             <Image src="/favicon.png" alt="favicon" width={24} height={24} />
           </Link>
           <Link href="/projects" className="hover:underline">projects</Link>
-          <Link href="/previous-work" className="hover:underline">previous work</Link>
+          <Link href="/previous-work" className="hover:underline">prior work</Link>
+          <Link href="/miscellany" className="hover:underline">miscellany</Link>
         </div>
         <ThemeToggle />
       </div>

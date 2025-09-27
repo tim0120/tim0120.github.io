@@ -4,7 +4,6 @@ const Copyright = () => (
       &copy; {new Date().getFullYear()} Timothy H. Kostolansky · Content licensed under{' '}
       <a
         href="https://creativecommons.org/licenses/by/4.0/"
-        target="_blank"
         rel="noopener noreferrer"
         className="underline hover:underline"
       >
