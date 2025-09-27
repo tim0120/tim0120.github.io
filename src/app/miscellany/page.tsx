@@ -19,7 +19,7 @@ export default function MiscellanyPage() {
       <section>
         <h2 className="text-xl font-semibold mb-3">Things I Like to Do</h2>
         <p className="text-md">
-          I've {' '}
+          I&apos;ve{' '}
           <Link href="https://www.youtube.com/watch?v=GBJPhRF89w4" className="underline hover:underline">played</Link>
           {' '}
           <Link href="https://www.youtube.com/watch?v=We5grgBczjY" className="underline hover:underline">basketball</Link>
