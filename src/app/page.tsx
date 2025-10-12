@@ -21,8 +21,8 @@ export default function Home() {
               { href: "https://linkedin.com/in/thkostolansky", src: "/images/linkedin.svg", label: "LinkedIn" },
               { href: "https://scholar.google.com/citations?user=tzvUuOIAAAAJ&hl=en", src: "/images/googlescholar.svg", label: "Google Scholar" }
             ].map((link, index) => (
-              <Link key={index} href={link.href} aria-label={link.label}>
-                <ThemeAwareSvg src={link.src} className="!w-3 !h-3 hover:scale-[1.15]" />
+              <Link key={index} href={link.href} aria-label={link.label} title={link.label}>
+                <ThemeAwareSvg src={link.src} className="!w-3 !h-3 hover:scale-[1.15] origin-center" />
               </Link>
             ))}
           </div>
