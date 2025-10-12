@@ -33,7 +33,25 @@ const lora = Lora({
 // Automatically exports metadata for the page
 export const metadata: Metadata = {
   title: "Timothy H. Kostolansky",
-  description: "Timothy H. Kostolansky's personal website",
+  description: "AI alignment and interpretability researcher. Building ML models that understand humans and the world around us.",
+  openGraph: {
+    title: "Timothy H. Kostolansky",
+    description: "AI alignment and interpretability researcher. Building ML models that understand humans and the world around us.",
+    url: "https://tim0120.github.io",
+    siteName: "Timothy H. Kostolansky",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Timothy H. Kostolansky",
+    description: "AI alignment and interpretability researcher. Building ML models that understand humans and the world around us.",
+    creator: "@thkostolansky",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

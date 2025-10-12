@@ -5,16 +5,47 @@ import { useTheme } from '@/context/ThemeContext';
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
 
+  const getThemeIcon = () => {
+    switch (theme) {
+      case 'light':
+        return '🌞';
+      case 'dark':
+        return '🌜';
+      case 'system':
+        return '💻';
+    }
+  };
+
+  const getThemeDescription = () => {
+    switch (theme) {
+      case 'light':
+        return 'Light mode';
+      case 'dark':
+        return 'Dark mode';
+      case 'system':
+        return 'System theme';
+    }
+  };
+
+  const getNextTheme = () => {
+    switch (theme) {
+      case 'light':
+        return 'dark';
+      case 'dark':
+        return 'system';
+      case 'system':
+        return 'light';
+    }
+  };
+
   return (
     <button
       onClick={toggleTheme}
-      // className="text-xl hover:scale-125 transition-transform duration-100 ease-in-out"
       className="text-xl"
-      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+      aria-label={`Switch to ${getNextTheme()} theme`}
+      title={getThemeDescription()}
     >
-      {theme === 'light' ? '🌚' : '🌞'}
-      {/* Alternative: use text instead of emoji */}
-      {/* {theme === 'light' ? 'Dark' : 'Light'} */}
+      {getThemeIcon()}
     </button>
   );
 }
