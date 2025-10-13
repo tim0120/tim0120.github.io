@@ -113,9 +113,9 @@ function getLinkLabel(link: PublicationLink) {
 const Publication = ({ title, authors, links, publication, date }: PublicationEntry) => {
   return (
     <>
-      <div className="text-sm font-medium">{title}</div>
-      <p className="text-xs text-gray-700 dark:text-gray-300">{underlineMyName(authors)}</p>
-      <p className="text-xs text-gray-600 dark:text-gray-400">
+      <div className="text-base font-medium">{title}</div>
+      <p className="text-sm text-gray-700 dark:text-gray-300">{underlineMyName(authors)}</p>
+      <p className="text-sm text-gray-600 dark:text-gray-400">
         {links.map((link, index) => (
           <span key={link.url}>
             {index > 0 ? ", " : ""}
@@ -146,7 +146,7 @@ export default function Publications({ selectedOnly = false }: { selectedOnly?: 
   return (
     <div>
       {list.map((publication, index) => (
-        <div key={index} className="mb-2">
+        <div key={index} className="mb-4">
           <Publication {...publication} />
         </div>
       ))}
