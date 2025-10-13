@@ -15,7 +15,7 @@
 
 /* Dark theme */
 :root[class~="dark"] {
-  --background: #292929;
+  --background: #1A1A1E;
   --foreground: #ededed;
   
   /* Dark theme variants */
