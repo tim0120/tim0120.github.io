@@ -45,6 +45,13 @@ export default function Home() {
                 <div className="flex gap-1 items-baseline">
                   <span className="text-xs text-gray-500 dark:text-gray-400 w-14 flex-shrink-0">2025</span>
                   <div className="flex-1">
+                    <Link href="https://x.com/thkostolansky/status/1978988644795855063" className="underline decoration-gray-400 hover:decoration-gray-600 dark:decoration-gray-500 dark:hover:decoration-gray-300 transition-colors">building AI for a human future</Link>
+                    <span className="text-xs text-gray-500 dark:text-gray-400"> · <Link href="https://workshoplabs.ai" className="underline decoration-gray-400 hover:decoration-gray-600 dark:decoration-gray-500 dark:hover:decoration-gray-300 transition-colors">Workshop Labs</Link></span>
+                  </div>
+                </div>
+                <div className="flex gap-1 items-baseline">
+                  <span className="text-xs text-gray-500 dark:text-gray-400 w-14 flex-shrink-0">2025</span>
+                  <div className="flex-1">
                     investigating entity representations in transformer LMs
                     <span className="text-xs text-gray-500 dark:text-gray-400"> · <Link href="https://humancompatible.ai" className="underline decoration-gray-400 hover:decoration-gray-600 dark:decoration-gray-500 dark:hover:decoration-gray-300 transition-colors">CHAI</Link></span>
                   </div>

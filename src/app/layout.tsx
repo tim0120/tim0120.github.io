@@ -60,9 +60,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.png" type="image/png" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const theme = localStorage.getItem('theme') || 'system';
+                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                const actualTheme = theme === 'system' ? systemTheme : theme;
+                if (actualTheme === 'dark') {
+                  document.documentElement.classList.add('dark');
+                }
+              })();
+            `,
+          }}
+        />
       </head>
       <body className={`${lora.variable} ${inter.variable} ${geistSans.variable} ${geistMono.variable} antialiased px-5 pt-10 sm:px-20 sm:pt-16 md:px-30 lg:px-60 xl:px-96 2xl:px-120 min-h-screen flex flex-col`}>
         <ThemeProvider>

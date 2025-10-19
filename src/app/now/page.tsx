@@ -1,3 +1,5 @@
+import TweetEmbed from "@/components/TweetEmbed";
+
 export default function NowPage() {
   return (
     <div>
@@ -6,13 +8,17 @@ export default function NowPage() {
       <div className="space-y-6">
         <section>
           <h2 className="text-xl font-semibold mb-3">What I&apos;m Up To</h2>
-          <p className="text-md">
-            I&apos;m wrapping up my time at the{' '}
-            <a href="https://humancompatible.ai" className="underline hover:underline">
-              Center for Human-Compatible AI
+          <p className="text-md mb-4">
+            I recently{' '}
+            <a href="https://x.com/thkostolansky/status/1978988644795855063" className="underline hover:underline">
+              joined
             </a>
-            , where I&apos;ve been working on understanding how transformer language models represent entities in natural language generation.
+            {' '}<a href="https://workshoplabs.ai" className="underline hover:underline">
+              Workshop Labs
+            </a>
+            , where I&apos;m working on building AI for a human future.
           </p>
+          <TweetEmbed tweetId="1978988644795855063" />
         </section>
 
         <section>
@@ -29,7 +35,7 @@ export default function NowPage() {
         <section>
           <h2 className="text-xl font-semibold mb-3">Based In</h2>
           <p className="text-md">
-            Bay Area, California
+            London, UK
           </p>
         </section>
 
