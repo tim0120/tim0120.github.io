@@ -16,7 +16,7 @@ export default function NowPage() {
             {' '}<a href="https://workshoplabs.ai" className="underline hover:underline">
               Workshop Labs
             </a>
-            , where I&apos;m working on building AI for a human future.
+            !
           </p>
           <TweetEmbed tweetId="1978988644795855063" />
         </section>
