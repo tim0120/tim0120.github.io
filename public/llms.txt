@@ -1,0 +1,35 @@
+# Tim Kostolansky
+
+> Personal website of Timothy H. Kostolansky, an ML researcher focused on interpretability, AI safety, and understanding how language models work internally. Based in San Francisco.
+
+Tim builds and studies ML systems, with a focus on making model behavior more transparent and reliable. He holds an MEng in Computer Science and dual BS degrees in Physics and Computer Science from MIT.
+
+## Current
+
+- [Workshop Labs](https://workshoplabs.ai): Building AI for a human future (2025-present)
+- [Now page](https://tim0120.github.io/now): What Tim is currently working on and recent updates
+
+## Research
+
+- [CoT Red-Handed: Stress Testing Chain-of-Thought Monitoring](https://arxiv.org/abs/2505.23575): Paper on stress-testing chain-of-thought monitoring, accepted to NeurIPS 2025. With LASR Labs.
+- [Inverse Constitutional AI](https://dspace.mit.edu/handle/1721.1/156804): Master's thesis on interpretability and steering of language models. MIT, 2024.
+- [Entity representations research](https://humancompatible.ai): Investigating entity representations in transformer language models at CHAI (2025)
+
+## Projects
+
+- [Emoji Search](https://tim0120.github.io/projects/emoji-search): An emoji search engine
+
+## Contact
+
+- [GitHub](https://github.com/tim0120)
+- [Twitter](https://twitter.com/thkostolansky)
+- [LinkedIn](https://linkedin.com/in/thkostolansky)
+- [Google Scholar](https://scholar.google.com/citations?user=tzvUuOIAAAAJ&hl=en)
+
+## Optional
+
+- [Resume](https://tim0120.github.io/documents/resume.pdf): Tim's CV/resume
+- [Miscellany](https://tim0120.github.io/miscellany): Reading habits, favorite tools, and basketball career
+- [Prior Work](https://tim0120.github.io/previous-work): Full list of publications and projects
+- [Zotero library](https://www.zotero.org/thkostolansky): Research library
+- [Curius](https://curius.app/timothy-kostolansky): Reading list and saved articles

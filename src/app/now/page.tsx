@@ -35,7 +35,7 @@ export default function NowPage() {
         <section>
           <h2 className="text-xl font-semibold mb-3">Based In</h2>
           <p className="text-md">
-            London, UK
+            San Francisco
           </p>
         </section>
 
