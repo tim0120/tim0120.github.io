@@ -16,6 +16,16 @@ type PublicationEntry = {
 
 const publications: PublicationEntry[] = [
   {
+    title: "Post-Training 50x Faster",
+    authors: "Addie Foote, Rudolf Laine, Timothy H. Kostolansky",
+    publication: "Workshop Labs Blog",
+    date: "March 2026",
+    selected: true,
+    links: [
+      { url: "https://workshoplabs.ai/blog/post-training-50x-faster", label: "blog post" }
+    ]
+  },
+  {
     title: "CoT Red-Handed: Stress Testing Chain-of-Thought Monitoring",
     authors: "Benjamin Arnav*, Pablo Bernabeu-Pérez*, Nathan Helm-Burger*, Timothy H. Kostolansky*, Hannes Whittingham*, Mary Phuong",
     publication: "In Proc. NeurIPS 2025",

@@ -13,12 +13,12 @@ export default function ClickableProfileImage() {
 
   return (
     <Image
-      src="/images/face.png"
+      src="/images/face.jpg"
       alt="My face"
-      width={96}
-      height={96}
+      width={400}
+      height={400}
       onClick={handleClick}
-      className={`mx-auto w-22 h-22 sm:w-[6.6rem] sm:h-[6.6rem] rounded-[30%] object-cover object-[center_30%] transition-transform duration-200 hover:scale-105 cursor-pointer ${
+      className={`mx-auto w-22 h-22 sm:w-[6.6rem] sm:h-[6.6rem] rounded-[30%] object-cover object-center transition-transform duration-200 hover:scale-105 cursor-pointer ${
         isClicked ? 'scale-[1.155]' : ''
       }`}
     />

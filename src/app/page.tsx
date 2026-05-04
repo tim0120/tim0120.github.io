@@ -37,14 +37,21 @@ export default function Home() {
               i build and study ML systems
             </p>
             <p>
-              these days im thinking about how models work internally and how to make their behavior more transparent and reliable
+              these days im training models and watching how they behave, with an eye for making sure their effects on the world are ones all affected stakeholders are satisfied with
             </p>
 
             <div className="mt-16">
               <div className="space-y-1 text-sm">
                 <p className="font-md">what i&apos;ve been up to:</p>
                 <div className="flex gap-1 items-baseline">
-                  <span className="text-xs text-gray-500 dark:text-gray-400 w-14 flex-shrink-0">2025</span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400 w-14 flex-shrink-0">2026</span>
+                  <div className="flex-1">
+                    <Link href="https://www.primeintellect.ai/blog/lab" className="underline decoration-gray-400 hover:decoration-gray-600 dark:decoration-gray-500 dark:hover:decoration-gray-300 transition-colors">decentralizing frontier AI</Link>
+                    <span className="text-xs text-gray-500 dark:text-gray-400"> · <Link href="https://primeintellect.ai" className="underline decoration-gray-400 hover:decoration-gray-600 dark:decoration-gray-500 dark:hover:decoration-gray-300 transition-colors">Prime Intellect</Link></span>
+                  </div>
+                </div>
+                <div className="flex gap-1 items-baseline">
+                  <span className="text-xs text-gray-500 dark:text-gray-400 w-14 flex-shrink-0">2025–26</span>
                   <div className="flex-1">
                     <Link href="https://x.com/thkostolansky/status/1978988644795855063" className="underline decoration-gray-400 hover:decoration-gray-600 dark:decoration-gray-500 dark:hover:decoration-gray-300 transition-colors">building AI for a human future</Link>
                     <span className="text-xs text-gray-500 dark:text-gray-400"> · <Link href="https://workshoplabs.ai" className="underline decoration-gray-400 hover:decoration-gray-600 dark:decoration-gray-500 dark:hover:decoration-gray-300 transition-colors">Workshop Labs</Link></span>

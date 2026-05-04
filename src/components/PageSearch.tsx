@@ -16,7 +16,7 @@ const pages: Page[] = [
   { title: 'Previous Work', path: '/previous-work', description: 'Past work and research' },
   { title: 'Miscellany', path: '/miscellany', description: 'Basketball, tools, and reading' },
   { title: 'Now', path: '/now', description: 'What I\'m up to right now' },
-  { title: 'Blog', path: '/blog', description: 'Writing and thoughts' },
+  { title: 'Blog', path: 'https://tim.bearblog.dev', description: 'Writing and thoughts' },
 ];
 
 interface PageSearchProps {

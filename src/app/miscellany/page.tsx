@@ -5,63 +5,65 @@ export default function MiscellanyPage() {
     <div>
       <h1 className="text-3xl font-bold mb-6">Miscellany</h1>
 
-      <section className="space-y-4 mb-8">
-        <h2 className="text-xl font-semibold mb-3">Reading</h2>
-        <p className="text-md">
-          I keep my research library on{' '}
-          <Link href="https://www.zotero.org/thkostolansky" className="underline hover:underline">
-            Zotero
-          </Link>
-          {' '}and save things I read to{' '}
-          <Link href="https://curius.app/timothy-kostolansky" className="underline hover:underline">
-            Curius
-          </Link>
-          .
-        </p>
+<section className="space-y-4 mb-8">
+        <h2 className="text-xl font-semibold mb-3">Some of My Favorite Tools</h2>
+        <div className="relative w-full h-[320px] sm:h-[360px]">
+          {[
+            { name: 'Raycast',       url: 'https://www.raycast.com',                                              favicon: 'raycast.com',                  top: 22, left: 14, size: 52, delay: 0.0, dur: 11, drift: [ 14, -10, -12, -16,  -8,  14] },
+            { name: 'Shortcat',      url: 'https://shortcat.app',                                                 favicon: 'shortcat.app',                 top: 62, left: 8,  size: 44, delay: 1.8, dur:  9, drift: [-12,  14,  16,   8,   6, -14] },
+            { name: 'Maccy',         url: 'https://maccy.app',                                                    favicon: 'maccy.app',                    top: 82, left: 26, size: 46, delay: 3.2, dur: 12, drift: [ 10,  12, -14,  10, -16,  -8] },
+            { name: 'Karabiner layers', url: 'https://gist.github.com/gsinclair/f4ab34da53034374eb6164698a0a8ace', favicon: 'karabiner-elements.pqrs.org', top: 10, left: 38, size: 56, delay: 0.9, dur: 10, drift: [-14,   8,  12, -14,  -6,  16] },
+            { name: 'Ghostty',       url: 'https://ghostty.org',                                                  favicon: 'ghostty.org',                  top: 48, left: 36, size: 56, delay: 2.4, dur: 13, drift: [ 16,  14,   8, -12, -16,  -6] },
+            { name: 'Cursor',        url: 'https://cursor.com',                                                   favicon: 'cursor.com',                   top: 18, left: 62, size: 48, delay: 0.4, dur:  9, drift: [-10, -14,  14,   6,  12,  12] },
+            { name: 'Claude Code',   url: 'https://claude.com/claude-code',                                       favicon: 'claude.com',                   top: 52, left: 72, size: 52, delay: 2.7, dur: 11, drift: [ 12,  10, -16, -14,   8, -10] },
+            { name: 'Codex',         url: 'https://developers.openai.com/codex/cli',                              favicon: 'openai.com',                   top: 78, left: 54, size: 44, delay: 1.2, dur: 10, drift: [-14,  -8,  10,  14, -12,   6] },
+            { name: 'Obsidian',      url: 'https://obsidian.md',                                                  favicon: 'obsidian.md',                  top: 30, left: 88, size: 48, delay: 2.0, dur: 12, drift: [ -8,  16,  14, -10,  16,  -8] },
+            { name: 'Wispr Flow',    url: 'https://wispr.ai',                                                     favicon: 'wispr.ai',                     top: 80, left: 84, size: 44, delay: 0.8, dur:  9, drift: [ 10, -14, -14,  12,  -6,  14] },
+          ].map((tool) => {
+            const [dx1, dy1, dx2, dy2, dx3, dy3] = tool.drift;
+            return (
+              <Link
+                key={tool.name}
+                href={tool.url}
+                title={tool.name}
+                aria-label={tool.name}
+                className="tool-cloud-icon"
+                style={{
+                  top: `${tool.top}%`,
+                  left: `${tool.left}%`,
+                  width: tool.size,
+                  height: tool.size,
+                  ['--delay' as string]: `${tool.delay}s`,
+                  ['--dur' as string]: `${tool.dur}s`,
+                  ['--dx1' as string]: `${dx1}px`,
+                  ['--dy1' as string]: `${dy1}px`,
+                  ['--dx2' as string]: `${dx2}px`,
+                  ['--dy2' as string]: `${dy2}px`,
+                  ['--dx3' as string]: `${dx3}px`,
+                  ['--dy3' as string]: `${dy3}px`,
+                }}
+              >
+                <img
+                  src={`https://www.google.com/s2/favicons?domain=${tool.favicon}&sz=128`}
+                  alt={tool.name}
+                  width={tool.size}
+                  height={tool.size}
+                  className="rounded-lg w-full h-full"
+                />
+              </Link>
+            );
+          })}
+        </div>
       </section>
 
       <section className="space-y-4 mb-8">
-        <h2 className="text-xl font-semibold mb-3">Some of My Favorite Tools</h2>
+        <h2 className="text-xl font-semibold mb-3">Cool Sites</h2>
         <ul className="text-md space-y-2 list-none">
           <li>
-            <Link href="https://www.raycast.com" className="underline hover:underline">Raycast</Link>
-            {' '}for launching things
+            <Link href="https://oscarmoxon.com" className="underline hover:underline">oscarmoxon.com</Link>
           </li>
           <li>
-            <Link href="https://shortcat.app" className="underline hover:underline">Shortcat</Link>
-            {' '}for keyboard-only UI navigation
-          </li>
-          <li>
-            <Link href="https://maccy.app" className="underline hover:underline">Maccy</Link>
-            {' '}for clipboard history
-          </li>
-          <li>
-            <Link href="https://gist.github.com/gsinclair/f4ab34da53034374eb6164698a0a8ace" className="underline hover:underline">Karabiner layers</Link>
-            {' '}(holding home row keys gives me navigation/symbols/numbers)
-          </li>
-          <li>
-            <Link href="https://ghostty.org" className="underline hover:underline">Ghostty</Link>
-            {' '}as my terminal
-          </li>
-          <li>
-            <Link href="https://cursor.com" className="underline hover:underline">Cursor</Link>
-            {' '}/ {' '}
-            <Link href="https://neovim.io" className="underline hover:underline">nvim</Link>
-            {' '}for editing
-          </li>
-          <li>
-            <Link href="https://claude.com/claude-code" className="underline hover:underline">Claude Code</Link>
-            {' '}for AI assistance
-          </li>
-          <li>
-            <Link href="https://obsidian.md" className="underline hover:underline">Obsidian</Link>
-            {' '}for notes
-          </li>
-          <li>
-            <Link href="https://superwhisper.com" className="underline hover:underline">Superwhisper</Link>
-            {' '}vs{' '}
-            <Link href="https://wispr.ai" className="underline hover:underline">Wispr Flow</Link>
-            {' '}(battling for voice-to-text supremacy)
+            <Link href="https://near.blog" className="underline hover:underline">near.blog</Link>
           </li>
         </ul>
       </section>

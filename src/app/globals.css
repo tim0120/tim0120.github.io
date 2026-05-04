@@ -31,3 +31,26 @@ body {
   font-weight: 500;
   transition: background-color 200ms, color 200ms;
 }
+
+@keyframes tool-drift {
+  0%, 100% { transform: translate(-50%, -50%) translate(0, 0); }
+  25%      { transform: translate(-50%, -50%) translate(var(--dx1, 8px),  var(--dy1, -6px)); }
+  50%      { transform: translate(-50%, -50%) translate(var(--dx2, -10px), var(--dy2, -12px)); }
+  75%      { transform: translate(-50%, -50%) translate(var(--dx3, -6px),  var(--dy3, 8px)); }
+}
+
+.tool-cloud-icon {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  animation: tool-drift var(--dur, 9s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  transition: transform 200ms ease-out, filter 200ms ease-out;
+  will-change: transform;
+}
+
+.tool-cloud-icon:hover {
+  animation-play-state: paused;
+  transform: translate(-50%, -50%) scale(1.2);
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+  z-index: 10;
+}

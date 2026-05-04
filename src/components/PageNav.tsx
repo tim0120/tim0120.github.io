@@ -12,6 +12,7 @@ export default function PageNav() {
   const navItems = [
     { href: '/projects', label: 'projects' },
     { href: '/previous-work', label: 'prior work' },
+    { href: 'https://tim.bearblog.dev', label: 'blog', external: true },
     { href: '/miscellany', label: 'miscellany' },
     { href: '/now', label: 'now' },
   ];
@@ -28,6 +29,8 @@ export default function PageNav() {
               <Link
                 key={item.href}
                 href={item.href}
+                target={item.external ? '_blank' : undefined}
+                rel={item.external ? 'noopener noreferrer' : undefined}
                 className={pathname === item.href ? 'border-b border-current' : 'hover:border-b hover:border-current'}
               >
                 <HoverName name={item.label} />
