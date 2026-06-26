@@ -51,14 +51,17 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   const toggleTheme = () => {
     setTheme(prevTheme => {
-      // Cycle through: light → dark → system
+      // Cycle starts by flipping the parity of whatever's currently shown:
+      // system → opposite-of-system → matches-system → system → …
+      const sys = getSystemTheme();
+      const opp: 'light' | 'dark' = sys === 'dark' ? 'light' : 'dark';
       let newTheme: Theme;
-      if (prevTheme === 'light') {
-        newTheme = 'dark';
-      } else if (prevTheme === 'dark') {
-        newTheme = 'system';
+      if (prevTheme === 'system') {
+        newTheme = opp;
+      } else if (prevTheme === opp) {
+        newTheme = sys;
       } else {
-        newTheme = 'light';
+        newTheme = 'system';
       }
 
       localStorage.setItem('theme', newTheme);

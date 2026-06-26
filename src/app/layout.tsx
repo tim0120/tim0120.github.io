@@ -5,6 +5,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import PageNav from "@/components/PageNav";
 import Copyright from "@/components/Footer";
+import LayoutShell from "@/components/LayoutShell";
+import PageTransition from "@/components/PageTransition";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -78,17 +80,22 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${lora.variable} ${inter.variable} ${geistSans.variable} ${geistMono.variable} antialiased px-5 pt-10 sm:px-20 sm:pt-16 md:px-30 lg:px-60 xl:px-96 2xl:px-120 min-h-screen flex flex-col`}>
+      <body className={`${lora.variable} ${inter.variable} ${geistSans.variable} ${geistMono.variable} antialiased pt-10 sm:pt-16 min-h-screen flex flex-col overflow-x-clip`}>
         <ThemeProvider>
-          <header>
-            <PageNav />
-          </header>
-          <main className="flex-1">
-            {children}
-          </main>
-          <footer>
-            <Copyright />
-          </footer>
+          <LayoutShell>
+            <header>
+              <PageNav />
+            </header>
+            {/* Start page content at the "about" line in the sidebar rail:
+                rail top (4.5rem) + favicon (24px) + mb-2 (8px) + gap-3 (12px),
+                minus the body's pt-16 ≈ 52px. */}
+            <main className="flex-1 pt-[52px]">
+              <PageTransition>{children}</PageTransition>
+            </main>
+            <footer>
+              <Copyright />
+            </footer>
+          </LayoutShell>
         </ThemeProvider>
       </body>
     </html>

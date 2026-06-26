@@ -1,5 +1,5 @@
 const Copyright = () => (
-  <div className="text-center w-full flex justify-center py-2">
+  <div className="w-full py-2">
     <p className="text-xs">
       &copy; {new Date().getFullYear()} Timothy H. Kostolansky · Content licensed under{' '}
       <a

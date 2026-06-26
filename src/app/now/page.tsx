@@ -1,72 +1,67 @@
-import TweetEmbed from "@/components/TweetEmbed";
+import { getTweet } from "react-tweet/api";
+import AsciiArt from "@/components/AsciiArt";
 
-export default function NowPage() {
+// The tweet to surface. Update this id when you want a newer one shown.
+const TWEET_ID = "2051340656153645171";
+
+export default async function NowPage() {
+  let tweet:
+    | {
+        text: string;
+        created_at: string;
+        id_str: string;
+        user: { screen_name: string };
+        mediaDetails?: { type: string; media_url_https: string }[];
+        photos?: { url: string }[];
+      }
+    | undefined;
+  try {
+    tweet = await getTweet(TWEET_ID);
+  } catch {
+    tweet = undefined;
+  }
+
+  const photo =
+    tweet?.mediaDetails?.find((m) => m.type === "photo")?.media_url_https ??
+    tweet?.photos?.[0]?.url;
+
+  const tweetUrl = tweet
+    ? `https://x.com/${tweet.user.screen_name}/status/${tweet.id_str}`
+    : `https://x.com/thkostolansky`;
+
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-6">Now</h1>
-
-      <div className="space-y-6">
-        <section>
-          <h2 className="text-xl font-semibold mb-3">What I&apos;m Up To</h2>
-          <p className="text-md mb-4">
-            I recently{' '}
-            <a href="https://x.com/thkostolansky/status/2051340656153645171" className="underline hover:underline">
-              joined
-            </a>
-            {' '}<a href="https://primeintellect.ai" className="underline hover:underline">
-              Prime Intellect
-            </a>
-            !
-          </p>
-          <TweetEmbed tweetId="2051340656153645171" />
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold mb-3">Recent</h2>
-          <div className="space-y-1 text-sm">
-            <div className="flex gap-1 items-baseline">
-              <span className="text-xs text-gray-500 dark:text-gray-400 w-20 flex-shrink-0">Mar 2026</span>
-              <div className="flex-1">
-                Co-authored{' '}
-                <a href="https://workshoplabs.ai/blog/post-training-50x-faster" className="underline decoration-gray-400 hover:decoration-gray-600 dark:decoration-gray-500 dark:hover:decoration-gray-300 transition-colors">
-                  Post-Training 50x Faster
-                </a>
-                {' '}on the Workshop Labs blog, introducing Trellis, our open-source post-training codebase for Kimi-K2-Thinking.
-              </div>
-            </div>
-            <div className="flex gap-1 items-baseline">
-              <span className="text-xs text-gray-500 dark:text-gray-400 w-20 flex-shrink-0">Sep 2025</span>
-              <div className="flex-1">
-                Our paper{' '}
-                <a href="https://arxiv.org/abs/2505.23575" className="underline decoration-gray-400 hover:decoration-gray-600 dark:decoration-gray-500 dark:hover:decoration-gray-300 transition-colors">
-                  CoT Red-Handed: Stress Testing Chain-of-Thought Monitoring
-                </a>
-                {' '}was accepted to NeurIPS 2025.
-              </div>
-            </div>
+    <div className="max-w-full">
+      {tweet ? (
+        // The whole card links to the tweet; text inside is still selectable.
+        <a
+          href={tweetUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group block w-full max-w-[26rem] border border-gray-400/70 p-4 no-underline transition-colors hover:border-gray-500 dark:border-gray-600 dark:hover:border-gray-400"
+        >
+          <div className="mb-2 text-xs text-gray-500 dark:text-gray-400">
+            @{tweet.user.screen_name}
           </div>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold mb-3">Based In</h2>
-          <p className="text-md">
-            San Francisco
+          <p className="whitespace-pre-wrap text-sm text-[color:var(--foreground)]">
+            {tweet.text.replace(/\s*https:\/\/t\.co\/\S+\s*$/, "").trim()}
           </p>
-        </section>
-
-        <footer className="mt-8 pt-4 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Last updated: May 2026
-            </p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              <a href="https://nownownow.com/about" className="underline decoration-gray-400 hover:decoration-gray-600 dark:decoration-gray-500 dark:hover:decoration-gray-300 transition-colors">
-                what&apos;s a now page?
-              </a>
-            </p>
+          {photo && <AsciiArt src={photo} className="mt-3" />}
+          <div className="mt-3 text-xs text-gray-500 group-hover:text-gray-700 dark:text-gray-400 dark:group-hover:text-gray-300">
+            {new Date(tweet.created_at).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}
           </div>
-        </footer>
-      </div>
+        </a>
+      ) : (
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          couldn&apos;t load the tweet —{" "}
+          <a href={tweetUrl} className="underline" target="_blank" rel="noopener noreferrer">
+            see it on x
+          </a>
+        </p>
+      )}
     </div>
   );
 }

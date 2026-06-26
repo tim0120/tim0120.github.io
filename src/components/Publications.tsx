@@ -11,6 +11,7 @@ type PublicationEntry = {
   publication: string;
   date?: string;
   selected: boolean;
+  category: 'paper' | 'post';
   links: PublicationLink[];
 };
 
@@ -21,6 +22,7 @@ const publications: PublicationEntry[] = [
     publication: "Workshop Labs Blog",
     date: "March 2026",
     selected: true,
+    category: "post",
     links: [
       { url: "https://workshoplabs.ai/blog/post-training-50x-faster", label: "blog post" }
     ]
@@ -31,6 +33,7 @@ const publications: PublicationEntry[] = [
     publication: "In Proc. NeurIPS 2025",
     date: "June 2025",
     selected: true,
+    category: "paper",
     links: [
       { url: "https://arxiv.org/abs/2505.23575", label: "arXiv" },
       { url: "https://neurips.cc/virtual/2025/poster/116053", label: "poster" }
@@ -42,6 +45,7 @@ const publications: PublicationEntry[] = [
     publication: "Master's Thesis",
     date: "May 2024",
     selected: true,
+    category: "paper",
     links: [
       { url: "https://dspace.mit.edu/handle/1721.1/156804", label: "pdf" }
     ]
@@ -52,6 +56,7 @@ const publications: PublicationEntry[] = [
     publication: "Class Project",
     date: "May 2024",
     selected: false,
+    category: "post",
     links: [
       { url: "/documents/i3cai.pdf", label: "pdf" }
     ]
@@ -62,6 +67,7 @@ const publications: PublicationEntry[] = [
     publication: "Class Project",
     date: "May 2024",
     selected: false,
+    category: "post",
     links: [
       { url: "/documents/mspacman.pdf", label: "pdf" }
     ]
@@ -72,6 +78,7 @@ const publications: PublicationEntry[] = [
     publication: "Blog Post",
     date: "December 2023",
     selected: false,
+    category: "post",
     links: [
       { url: "https://deep-learning-mit.github.io/staging/blog/2023/superposition/", label: "blog post" }
     ]
@@ -98,7 +105,7 @@ function underlineMyName(authors: string) {
     acc.push(part);
     if (idx < arr.length - 1) {
       acc.push(
-        <span key={idx} className="underline">
+        <span key={idx} className="font-bold">
           {matches && matches[idx] ? matches[idx] : "Timothy H. Kostolansky"}
         </span>
       );
@@ -123,9 +130,9 @@ function getLinkLabel(link: PublicationLink) {
 const Publication = ({ title, authors, links, publication, date }: PublicationEntry) => {
   return (
     <>
-      <div className="text-base font-medium">{title}</div>
-      <p className="text-sm text-gray-700 dark:text-gray-300">{underlineMyName(authors)}</p>
-      <p className="text-sm text-gray-600 dark:text-gray-400">
+      <div className="text-sm font-medium">{title}</div>
+      <p className="text-xs text-gray-700 dark:text-gray-300">{underlineMyName(authors)}</p>
+      <p className="text-xs text-gray-600 dark:text-gray-400">
         {links.map((link, index) => (
           <span key={link.url}>
             {index > 0 ? ", " : ""}
@@ -151,8 +158,16 @@ const Publication = ({ title, authors, links, publication, date }: PublicationEn
   );
 }
 
-export default function Publications({ selectedOnly = false }: { selectedOnly?: boolean }) {
-  const list = selectedOnly ? publications.filter(p => p.selected) : publications;
+export default function Publications({
+  selectedOnly = false,
+  category,
+}: {
+  selectedOnly?: boolean;
+  category?: 'paper' | 'post';
+}) {
+  const list = publications.filter(
+    (p) => (!selectedOnly || p.selected) && (!category || p.category === category)
+  );
   return (
     <div>
       {list.map((publication, index) => (

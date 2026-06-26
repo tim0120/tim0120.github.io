@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Shrink the whole type scale a touch (everything is rem-based). */
+html {
+  font-size: 15px;
+}
+
 /* Light theme (default) */
 :root {
-  --background: #f7f3e7;
+  --background: #cfe3e6;
   --foreground: #171717;
   
   /* Add any other theme colors you need */
@@ -27,9 +32,43 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-serif), Georgia, 'Times New Roman', serif;
-  font-weight: 500;
+  font-family: var(--font-geist-mono), ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-weight: 400;
   transition: background-color 200ms, color 200ms;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  body {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* When the sidebar rail is shown (real pointer, not too narrow), reserve a
+   left gutter for it so the centered content never collides with the rail. */
+@media (min-width: 768px) and (any-hover: hover) and (any-pointer: fine) {
+  body {
+    padding-left: 9rem;
+  }
+}
+
+/* Vibes collage: left edge stays aligned with the text column (it sits at the
+   body's left padding), width extends toward the right edge. Mirrors the body
+   padding so the gallery's left lines up with all other text. */
+.vibes-bleed {
+  width: calc(100vw - 1.25rem - 1.25rem);
+}
+@media (min-width: 640px) {
+  .vibes-bleed {
+    width: calc(100vw - 2rem - 2rem);
+  }
+}
+@media (min-width: 768px) and (any-hover: hover) and (any-pointer: fine) {
+  .vibes-bleed {
+    width: calc(100vw - 9rem - 2rem);
+  }
 }
 
 @keyframes tool-drift {

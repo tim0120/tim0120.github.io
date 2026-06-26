@@ -1,9 +1,13 @@
-export default function Blog() {
-  return (
-	<div className="">
-	  <div className="flex justify-between">
-		<div className="text-xl"> The blog is currently under construction 👷‍♂️🚧</div>
-	  </div>
-	</div>
-  );
+'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
+// Consolidated into /writing — redirect any old links.
+export default function BlogRedirectPage() {
+  const router = useRouter();
+  useEffect(() => {
+    router.replace('/writing');
+  }, [router]);
+  return null;
 }

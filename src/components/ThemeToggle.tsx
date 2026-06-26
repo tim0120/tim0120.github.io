@@ -27,22 +27,11 @@ export function ThemeToggle() {
     }
   };
 
-  const getNextTheme = () => {
-    switch (theme) {
-      case 'light':
-        return 'dark';
-      case 'dark':
-        return 'system';
-      case 'system':
-        return 'light';
-    }
-  };
-
   return (
     <button
       onClick={toggleTheme}
       className="text-xl"
-      aria-label={`Switch to ${getNextTheme()} theme`}
+      aria-label="Switch theme"
       title={getThemeDescription()}
     >
       {getThemeIcon()}
