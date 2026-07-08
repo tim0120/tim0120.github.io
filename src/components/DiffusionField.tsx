@@ -52,7 +52,9 @@ function layoutLines(cells: Cell[], cols: number): Cell[][] {
         lines.push(line);
         line = [];
       } else if (line.length > 0) {
-        line.push({ ch: ' ' });
+        // Keep the segment's href/hidden on the space so multi-word links
+        // stay one contiguous <a> instead of splitting at each space.
+        line.push({ ch: ' ', href: cell.href, hidden: cell.hidden });
       }
     } else {
       word.push(cell);
@@ -145,7 +147,10 @@ export default function DiffusionField({
       let done = true;
       for (let i = 0; i < n; i++) {
         if (elapsed >= settle[i]) {
-          cur[i] = cells[i].ch;
+          // Hidden (background-blended) cells stay blank during the animation —
+          // the plain-text grid can't color them, so they'd flash in visibly.
+          // They only enter via the resolved render, already invisible.
+          cur[i] = cells[i].hidden ? ' ' : cells[i].ch;
         } else {
           done = false;
           if (flip || cur[i] === '') cur[i] = randGlyph();

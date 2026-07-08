@@ -1,5 +1,6 @@
 import { getTweet } from "react-tweet/api";
 import AsciiArt from "@/components/AsciiArt";
+import { imageToAscii } from "@/lib/ascii";
 
 // The tweet to surface. Update this id when you want a newer one shown.
 const TWEET_ID = "2051340656153645171";
@@ -24,6 +25,8 @@ export default async function NowPage() {
   const photo =
     tweet?.mediaDetails?.find((m) => m.type === "photo")?.media_url_https ??
     tweet?.photos?.[0]?.url;
+  // Converted at build time so the static page ships with the art inline.
+  const ascii = photo ? await imageToAscii(photo) : undefined;
 
   const tweetUrl = tweet
     ? `https://x.com/${tweet.user.screen_name}/status/${tweet.id_str}`
@@ -45,7 +48,7 @@ export default async function NowPage() {
           <p className="whitespace-pre-wrap text-sm text-[color:var(--foreground)]">
             {tweet.text.replace(/\s*https:\/\/t\.co\/\S+\s*$/, "").trim()}
           </p>
-          {photo && <AsciiArt src={photo} className="mt-3" />}
+          {ascii && <AsciiArt art={ascii} className="mt-3" />}
           <div className="mt-3 text-xs text-gray-500 group-hover:text-gray-700 dark:text-gray-400 dark:group-hover:text-gray-300">
             {new Date(tweet.created_at).toLocaleDateString("en-US", {
               month: "short",

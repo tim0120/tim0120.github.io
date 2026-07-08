@@ -9,24 +9,25 @@ html {
 
 /* Light theme (default) */
 :root {
-  --background: #cfe3e6;
-  --foreground: #171717;
-  
+  /* Anthropic-ish ivory, shifted slightly green */
+  --background: #eceade;
+  --foreground: #191919;
+
   /* Add any other theme colors you need */
-  --primary: #3b82f6;
+  --primary: #cc785c; /* book cloth */
   --secondary: #6b7280;
-  --accent: #f59e0b;
+  --accent: #d4a27f; /* kraft */
 }
 
 /* Dark theme */
 :root[class~="dark"] {
-  --background: #1A1A1E;
-  --foreground: #ededed;
-  
+  --background: #1f1e1d;
+  --foreground: #ebe8e2;
+
   /* Dark theme variants */
-  --primary: #60a5fa;
+  --primary: #d4a27f;
   --secondary: #9ca3af;
-  --accent: #fbbf24;
+  --accent: #cc785c;
 }
 
 body {

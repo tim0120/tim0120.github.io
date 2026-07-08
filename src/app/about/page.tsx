@@ -109,14 +109,16 @@ export default function AboutPage() {
         </div>
       </div>
       <div className="mt-8">
-        <h2 className="text-lg font-semibold mb-2">selected publications</h2>
+        <div className="flex items-baseline gap-3 mb-2">
+          <h2 className="text-lg font-semibold">selected publications</h2>
+          <Link
+            href="/writing"
+            className="text-xs text-gray-500 dark:text-gray-500 underline decoration-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+          >
+            see more
+          </Link>
+        </div>
         <Publications selectedOnly={true} />
-        <Link
-          href="/writing"
-          className="-mt-3 block w-fit text-xs text-gray-500 dark:text-gray-500 underline decoration-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-        >
-          see more
-        </Link>
       </div>
     </div>
   );
