@@ -23,7 +23,7 @@ const GLYPHS = 'abcdefghijklmnopqrstuvwxyz0123456789/\\<>{}[]()=+*#@%&~^.,;:';
 const randGlyph = () => GLYPHS[(Math.random() * GLYPHS.length) | 0];
 
 const MIN_VH = 0.76; // the field is at least this tall, so short pages don't collapse
-const FIRST_MS = 2400; // first paint: everything resolves out of noise
+const FIRST_MS = 1450; // first paint: everything resolves out of noise
 const FLIP_MS = 70;
 // Route change: a wave sweeps the grid top-left → bottom-right. Each changed
 // cell holds its old glyph until the wave reaches it, passes through a short
