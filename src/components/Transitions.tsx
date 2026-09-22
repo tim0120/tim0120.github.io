@@ -2,56 +2,60 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import { isPlainRoute, navState } from '@/lib/nav';
 
-// Order of operations: fade the current page OUT, *then* navigate, then fade
-// the new page IN. In the App Router the `children` slot always reflects the
-// current route, so we can't buffer the old page — instead we intercept link
-// clicks and hold off the actual navigation until the fade-out has finished.
-const FADE_MS = 560; // fade in / out duration
+// Field → field navigation is handled by the DiffusionField morph. Anything
+// involving a plain page (vibes, project detail) gets a quick fade out, then
+// the route change, then a fade in.
+const OUT_MS = 200;
+const IN_MS = 260;
 
-export default function PageTransition({ children }: { children: React.ReactNode }) {
+export default function Transitions({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const [visible, setVisible] = useState(true);
+  const [duration, setDuration] = useState(IN_MS);
   const navigating = useRef(false);
 
-  // A new route has mounted → fade it in (two frames out so 0 → 1 animates).
+  // New route mounted → fade in (two frames out so 0 → 1 animates).
   useEffect(() => {
     navigating.current = false;
     const id = requestAnimationFrame(() => requestAnimationFrame(() => setVisible(true)));
     return () => cancelAnimationFrame(id);
   }, [pathname]);
 
-  // Intercept internal link clicks during the capture phase (before Next's own
-  // Link handler), fade out, then push the route once the fade completes.
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       const anchor = (e.target as HTMLElement)?.closest('a');
       if (!anchor) return;
-
       const href = anchor.getAttribute('href');
       if (!href || anchor.getAttribute('target') === '_blank') return;
-
       let url: URL;
       try {
         url = new URL(href, window.location.href);
       } catch {
         return;
       }
-      // Only same-origin navigations to a different path get the transition.
       if (url.origin !== window.location.origin) return;
-      if (url.pathname === window.location.pathname) return;
+      const from = window.location.pathname;
+      const to = url.pathname;
+      if (to === from) return;
+      const fromPlain = isPlainRoute(from);
+      if (!fromPlain && !isPlainRoute(to)) return; // field → field: let the morph run
 
       e.preventDefault();
       e.stopPropagation();
       if (navigating.current) return;
       navigating.current = true;
-
-      setVisible(false); // fade current page out
-      window.setTimeout(() => router.push(url.pathname + url.search + url.hash), FADE_MS);
+      navState.fromPlain = fromPlain;
+      setDuration(OUT_MS);
+      setVisible(false);
+      window.setTimeout(() => {
+        setDuration(IN_MS);
+        router.push(to + url.search + url.hash);
+      }, OUT_MS);
     };
-
     document.addEventListener('click', onClick, true);
     return () => document.removeEventListener('click', onClick, true);
   }, [router]);
@@ -59,7 +63,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
   return (
     <div
       className="transition-opacity ease-out"
-      style={{ transitionDuration: `${FADE_MS}ms`, opacity: visible ? 1 : 0 }}
+      style={{ transitionDuration: `${duration}ms`, opacity: visible ? 1 : 0 }}
     >
       {children}
     </div>

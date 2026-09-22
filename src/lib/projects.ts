@@ -3,9 +3,17 @@ export type ProjectType = {
     title: string
     description: string
     externalUrl?: string
+    // Listed but not linked anywhere yet.
+    comingSoon?: boolean
   }
 
 const PROJECTS: ProjectType[] = [
+  {
+    slug: 'memex',
+    title: 'Memex',
+    description: 'more info coming soon',
+    comingSoon: true,
+  },
   {
     slug: 'emoji-search',
     title: 'Emoji Search',
@@ -44,7 +52,7 @@ export async function getProjectData(slug: string): Promise<ProjectType> {
 }
 
 export function getAllProjectSlugs(): string[] {
-  return PROJECTS.filter(p => !p.externalUrl).map(project => project.slug)
+  return PROJECTS.filter(p => !p.externalUrl && !p.comingSoon).map(project => project.slug)
 }
 
 export function getAllProjects(): ProjectType[] {

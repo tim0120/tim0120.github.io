@@ -10,10 +10,10 @@ import { ThemeToggle } from './ThemeToggle';
 type NavItem = { href: string; label: string; external?: boolean };
 
 const navItems: NavItem[] = [
-  { href: '/about', label: 'about' },
+  { href: '/cv', label: 'cv' },
   { href: '/projects', label: 'projects' },
   { href: '/writing', label: 'writing' },
-  { href: '/miscellany', label: 'miscellany' },
+  { href: '/links', label: 'links' },
   { href: '/vibes', label: 'vibes' },
   { href: '/now', label: 'now' },
 ];
@@ -158,7 +158,9 @@ export default function PageNav() {
               target={item.external ? '_blank' : undefined}
               rel={item.external ? 'noopener noreferrer' : undefined}
               className={`whitespace-nowrap text-sm hover:underline transition-opacity duration-300 ease-out ${
-                active ? 'opacity-100' : current ? 'opacity-40' : 'opacity-0'
+                // On the home page the menu rests visible so first-time
+                // visitors can find it; elsewhere only the current page shows.
+                active ? 'opacity-100' : current || pathname === '/' ? 'opacity-40' : 'opacity-0'
               }`}
             >
               {item.label}

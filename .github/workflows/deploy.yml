@@ -2,6 +2,9 @@ name: Deploy Next.js to GitHub Pages
 on:
   push:
     branches: ["main"]
+  # Rebuild daily so build-time data (e.g. recent Curius saves) stays fresh.
+  schedule:
+    - cron: '0 12 * * *'
   workflow_dispatch:
 permissions:
   contents: read
