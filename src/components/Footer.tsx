@@ -1,7 +1,7 @@
 const Copyright = () => (
   <div className="w-full py-2">
     <p className="text-xs">
-      &copy; {new Date().getFullYear()} Timothy H. Kostolansky · Content licensed under{' '}
+      &copy; {new Date().getFullYear()} Timothy 春太 Kostolansky · Content licensed under{' '}
       <a
         href="https://creativecommons.org/licenses/by/4.0/"
         rel="noopener noreferrer"

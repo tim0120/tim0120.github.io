@@ -36,21 +36,21 @@ const lora = Lora({
 export const metadata: Metadata = {
   metadataBase: new URL("https://kostolans.ky"),
   title: {
-    default: "Timothy H. Kostolansky",
-    template: "%s · Timothy H. Kostolansky",
+    default: "Timothy 春太 Kostolansky",
+    template: "%s · Timothy 春太 Kostolansky",
   },
   description: "tim kostolansky. i study machine intelligence and think about its implications.",
   openGraph: {
-    title: "Timothy H. Kostolansky",
+    title: "Timothy 春太 Kostolansky",
     description: "tim kostolansky. i study machine intelligence and think about its implications.",
     url: "https://kostolans.ky",
-    siteName: "Timothy H. Kostolansky",
+    siteName: "Timothy 春太 Kostolansky",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "Timothy H. Kostolansky",
+    title: "Timothy 春太 Kostolansky",
     description: "tim kostolansky. i study machine intelligence and think about its implications.",
     creator: "@thkostolansky",
   },
