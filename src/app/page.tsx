@@ -25,7 +25,7 @@ export default async function Home() {
 
   const segments = norm([
     ...(faceInline ? [...art(faceInline, { maxCols: ASIDE_MIN_GRID }), { text: "\n", maxCols: ASIDE_MIN_GRID }] : []),
-    "hi im tim. welcome to my website!\n\ni study machine intelligence and think about its implications.\n\nive worked on language model interpretability, studied physics and computer science, and played some basketball.\n\nthings i like: meditation, philosophy, learning about the self and lack thereof, being active and outside, regularization, mode coverage, minecraft\n\n",
+    "hi im tim. welcome to my website!\n\ni study machine intelligence and think about its implications.\n\nive worked on language model interpretability, studied physics and computer science, and played some basketball.\n\nthings i like/think about: meditation, philosophy, learning about the self and lack thereof, emergent complexity, being active and outside, regularization, mode coverage, minecraft\n\n",
     ...joinWith(dim(" · "), socials.map(([label, href]) => [a(label, href, { dim: true })])),
     "\n",
     dim("reach me at: "),
