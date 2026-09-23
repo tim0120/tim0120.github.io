@@ -56,7 +56,7 @@ export default function PageNav() {
       const r = el.getBoundingClientRect();
       const main = document.querySelector('main');
       const textLeft = main ? main.getBoundingClientRect().left : r.right + 30;
-      const gap = Math.max(0, textLeft - r.left); // the gutter's width
+      const gap = Math.max(0, textLeft - r.left) / 2; // half the gutter's width
       setActive(
         e.clientX < textLeft && e.clientY >= r.top - gap && e.clientY <= r.bottom + gap
       );
