@@ -18,9 +18,6 @@ const navItems: NavItem[] = [
   { href: '/now', label: 'now' },
 ];
 
-// How far around the menu's own box the cursor still wakes it (px).
-const PROXIMITY_X = 150; // horizontal reach (toward the content)
-const PROXIMITY_Y = 90; // vertical reach (around the items only)
 // Above this (with a real pointer) we show the rail and reserve a left gutter
 // for it in CSS (see globals.css); below it we fall back to the hamburger.
 const SIDEBAR_MIN_WIDTH = 768;
@@ -48,19 +45,20 @@ export default function PageNav() {
     };
   }, []);
 
-  // Proximity: wake the menu when the cursor nears the left side — even while
-  // it's still over the main text — rather than only on direct hover.
+  // Wake the menu only while the cursor is in the gutter between the menu and
+  // the page text, within the menu's height plus a matching margin above and
+  // below it. Over the text itself the menu stays quiet.
   useEffect(() => {
     if (mode !== 'sidebar') return;
     const onMove = (e: MouseEvent) => {
       const el = navRef.current;
       if (!el) return;
       const r = el.getBoundingClientRect();
+      const main = document.querySelector('main');
+      const textLeft = main ? main.getBoundingClientRect().left : r.right + 30;
+      const gap = Math.max(0, textLeft - r.left); // the gutter's width
       setActive(
-        e.clientX >= r.left - PROXIMITY_X &&
-          e.clientX <= r.right + PROXIMITY_X &&
-          e.clientY >= r.top - PROXIMITY_Y &&
-          e.clientY <= r.bottom + PROXIMITY_Y
+        e.clientX < textLeft && e.clientY >= r.top - gap && e.clientY <= r.bottom + gap
       );
     };
     const onLeave = () => setActive(false);
